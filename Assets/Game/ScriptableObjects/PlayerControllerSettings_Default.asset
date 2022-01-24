@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerControllerSettings_Default
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  rotateSpeed: 2
   jumpHeightY: 0
   maxSpeed: 3
+  slideMovementSensitivity: 0.01
+  rotationSpeed: 3
