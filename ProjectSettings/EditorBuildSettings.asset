@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/SenaScene.unity
     guid: a0fe740708c83d0479f10cdd85c759d4
+  - enabled: 1
+    path: Assets/Game/Scenes/UIScene.unity
+    guid: 05b54543403cf434ea6c89c7462f6499
   m_configObjects: {}
