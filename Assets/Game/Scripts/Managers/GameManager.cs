@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         //TODO: UI loading screen, some vCam cinematics
         Time.timeScale = 1f;
 
-        Debug.Log("started");
+        //Debug.Log("started");
         ChangeState(GameState.Running);
     }
     private void HandleRunning()
