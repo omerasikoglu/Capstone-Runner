@@ -7,7 +7,7 @@ using NaughtyAttributes;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerControllerSettings playerSettings;
-    [SerializeField] private Transform sideMovementRoot, leftLimit, rightLimit;
+    [SerializeField] private Transform slideMovementRoot, leftLimit, rightLimit;
 
     private Vector2 inputDrag, previousMousePosition;
 
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleInput();
-        HandleSideMovement();
+        HandleSlideMovement();
         CheckMovement();
     }
     private void HandleInput()
@@ -40,23 +40,23 @@ public class PlayerController : MonoBehaviour
             inputDrag = Vector2.zero;
         }
     }
-    private void HandleSideMovement()
+    private void HandleSlideMovement()
     {
-        var localPos = sideMovementRoot.localPosition;
+        var localPos = slideMovementRoot.localPosition;
         localPos += Vector3.right * inputDrag.x * playerSettings.SlideMovementSensitivity;
 
         localPos.x = Mathf.Clamp(localPos.x, leftLimitX, rightLimitX);
 
-        sideMovementRoot.localPosition = localPos;
+        slideMovementRoot.localPosition = localPos;
 
         var moveDirection = Vector3.forward * 0.5f;
-        moveDirection += sideMovementRoot.right * inputDrag.x * playerSettings.SlideMovementSensitivity;
+        moveDirection += slideMovementRoot.right * inputDrag.x * playerSettings.SlideMovementSensitivity;
 
         moveDirection.Normalize();
 
         var targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-        sideMovementRoot.rotation = Quaternion.Lerp(sideMovementRoot.rotation, targetRotation, Time.deltaTime * playerSettings.RotationSpeed);
+        slideMovementRoot.rotation = Quaternion.Lerp(slideMovementRoot.rotation, targetRotation, Time.deltaTime * playerSettings.RotationSpeed);
 
     }
     private void CheckMovement()
