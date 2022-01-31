@@ -9,14 +9,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerControllerSettings playerSettings;
     [SerializeField] private Transform slideMovementRoot, leftLimit, rightLimit;
 
+    private Rigidbody rb => GetComponent<Rigidbody>();
+
     private Vector2 inputDrag, previousMousePosition;
 
-    private Rigidbody rb => GetComponent<Rigidbody>();
     private float leftLimitX => leftLimit.localPosition.x;
     private float rightLimitX => rightLimit.localPosition.x;
 
     private bool canMove = false;
-    
+
     private void Update()
     {
         HandleInput();
@@ -73,4 +74,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ChangeOutfit(bool isGoodItemTaken)
+    {
+
+    }
+    public void ChangeOutfit()
+    {
+    }
 }
