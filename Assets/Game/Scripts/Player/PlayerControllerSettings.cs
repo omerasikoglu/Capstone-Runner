@@ -21,13 +21,15 @@ public class PlayerControllerSettings : ScriptableObject
     [SerializeField] private float rotationSpeed = 1f;
     public float RotationSpeed => rotationSpeed;
 
-    [SerializeField] private int outfitChangeLimit1, outfitChangeLimit2, outfitChangeLimit3;
+    [SerializeField] private int outfitPoint;
+    public int OutfitPoint => outfitPoint;
 
-    public int GoodOutfitChangeLimit1 => outfitChangeLimit1;
-    public int GoodOutfitChangeLimit2 => outfitChangeLimit2;
-    public int GoodOutfitChangeLimit3 => outfitChangeLimit3;
-    public int BadOutfitChangeLimit1 => (outfitChangeLimit1) * -1;
-    public int BadOutfitChangeLimit2 => (outfitChangeLimit2) * -1;
-    public int BadOutfitChangeLimit3 => (outfitChangeLimit3) * -1;
+    [SerializeField] private int itemPointLimit1, itemPointLimit2, itemPointLimit3;
+    public int GoodItemPointLimit1 => itemPointLimit1;
+    public int GoodItemPointLimit2 => itemPointLimit2;
+    public int GoodItemPointLimit3 => itemPointLimit3;
+    public int BadItemPointLimit1 => (itemPointLimit1) * -1;
+    public int BadItemPointLimit2 => (itemPointLimit2) * -1;
+    public int BadItemPointLimit3 => (itemPointLimit3) * -1;
 }
 

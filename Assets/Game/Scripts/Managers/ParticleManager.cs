@@ -30,5 +30,9 @@ public class ParticleManager : MonoBehaviour
             emissionModule.enabled = false;
         }
     }
+    public void Play()
+    {
+
+    }
 
 }

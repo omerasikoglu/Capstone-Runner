@@ -41,15 +41,15 @@ public class FamiliarController : MonoBehaviour
     }
 
     [Button]
-    private void AddNewFamiliar()
+    public void AddNewFamiliar()
     {
-        Transform clone = Instantiate(familiar, transform.position, Quaternion.identity, transform);
+        Transform clone = Instantiate(familiar, transform.localPosition, Quaternion.identity, transform);
         familiarList.Add(clone);
         familiarDic.Add(familiarList.Count, clone.gameObject);
         UpdateFamiliarPositions();
     }
     [Button]
-    private void RemoveOldFamiliar()
+    public void RemoveOldFamiliar()
     {
         if (familiarList.Count > 0)
         {
@@ -61,7 +61,7 @@ public class FamiliarController : MonoBehaviour
         }
         else
         {
-            Debug.Log("liste zaten 0 ");
+            Debug.Log("familiar sayýsý zaten 0 ");
             return;
         }
     }
@@ -73,7 +73,7 @@ public class FamiliarController : MonoBehaviour
             Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.right;     // 0,180,0
 
             float distanceFromCenter = UnityEngine.Random.Range(1f, 2f);
-            Vector3 position = transform.position + direction * distanceFromCenter;
+            Vector3 position = transform.localPosition + direction * distanceFromCenter;
 
             familiarList[i].DOLocalMove(position, 1f);
 
