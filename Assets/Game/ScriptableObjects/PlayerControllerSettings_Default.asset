@@ -17,3 +17,6 @@ MonoBehaviour:
   maxSpeed: 3
   slideMovementSensitivity: 0.01
   rotationSpeed: 3
+  outfitChangeLimit1: 3
+  outfitChangeLimit2: 6
+  outfitChangeLimit3: 9
