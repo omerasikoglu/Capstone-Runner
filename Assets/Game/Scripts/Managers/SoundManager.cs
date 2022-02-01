@@ -6,50 +6,18 @@ using NaughtyAttributes;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
-    
-    public static AudioSource clickSound;
-    //Her ui ekranýn baþýnda veya sounda dinletilebilecek sesler
-    public static AudioSource generaUiIntroSound;
-    //In game
-    public static AudioSource inGameSound;
-    //Win ui için
-    public static AudioSource danceSound;
-    //Fail ui için
-    public static AudioSource failSound;
-    //Intro ui için
-    public static AudioSource introSound;
 
-
+    private AudioSource audioSource;
 
     private void Awake()
     {
-        Instance = this;
+        Instance ??= this;
+        audioSource ??= GetComponent<AudioSource>();
     }
-
-    private void Start()
+    public void PlaySound(AudioClip clip, float volume = .3f)
     {
-        
-       
-        clickSound = GetComponent<AudioSource>();
-
+        audioSource.PlayOneShot(clip, volume);
     }
 
-    //Her sesin oynatýlmasý veya durdurulmasý için methodlar
-
-    [Button]
-    public static void PlayClickSound()
-    {
-        clickSound.Play();
-        
-    }
-
-    [Button]
-    public static void StopClickSound()
-    {
-        clickSound.Stop();
-
-    }
-
-   
 
 }
