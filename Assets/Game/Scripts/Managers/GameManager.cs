@@ -61,7 +61,14 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         ChangeState(GameState.Starting);
-        StartCoroutine(WaitCertainAmountOfTime(() => { HandleRunning(); }, 1f));
+        StartCoroutine(WaitCertainAmountOfTime(() => { HandleRandomCam(); }, 1f));
+    }
+    private void HandleRandomCam()
+    {
+        // Run run
+        cameraHandler.SwitchCam(Cam.RandomCam);
+
+        StartCoroutine(WaitCertainAmountOfTime(() => { HandleMinigame(); }, 1f));
     }
     private void HandleRunning()
     {
