@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 [Serializable]
 public enum GameState
@@ -9,15 +10,17 @@ public enum GameState
     Running = 2,
     Minigame = 3,
     Flying = 4,
-    Win = 5,
+    Win = 5
 }
 public class GameManager : MonoBehaviour
 {
     public static event Action<GameState> OnBeforeStateChanged;
     public static event Action<GameState> OnAfterStateChanged;
 
-    public GameState State { get; private set; }
+    [field: SerializeField] public GameState State { get; private set; }
 
+    private CameraHandler cameraHandler;
+    private void Awake() => cameraHandler ??= GetComponent<CameraHandler>() ?? FindObjectOfType<CameraHandler>();
     private void Start() => ChangeState(GameState.Starting);
 
     public void ChangeState(GameState newState)
@@ -27,6 +30,7 @@ public class GameManager : MonoBehaviour
         OnBeforeStateChanged?.Invoke(newState);
 
         State = newState;
+
         switch (newState)
         {
             case GameState.Starting:
@@ -56,18 +60,24 @@ public class GameManager : MonoBehaviour
         //TODO: UI loading screen, some vCam cinematics
         Time.timeScale = 1f;
 
-        //Debug.Log("started");
-        ChangeState(GameState.Running);
+        ChangeState(GameState.Starting);
+        StartCoroutine(WaitCertainAmountOfTime(() => { HandleRunning(); }, 1f));
     }
     private void HandleRunning()
     {
         // Run run
+        cameraHandler.SwitchCam(Cam.RunningCam);
+        ChangeState(GameState.Running);
+
+        StartCoroutine(WaitCertainAmountOfTime(() => { HandleMinigame(); }, 4f));
     }
     private void HandleMinigame()
     {
         //Stop movement, Inputs changes, cameras changes 2 times at first and last
 
-        ChangeState(GameState.Running);
+        ChangeState(GameState.Minigame);
+        cameraHandler.SwitchCam(Cam.MinigameCam);
+        StartCoroutine(WaitCertainAmountOfTime(() => { HandleFlying(); }, 5f));
     }
 
     private void HandleWin()
@@ -80,6 +90,12 @@ public class GameManager : MonoBehaviour
     private void HandleFlying()
     {
         //Flying
+        cameraHandler.SwitchCam(Cam.FinalPoseCam);
     }
 
+    private IEnumerator WaitCertainAmountOfTime(Action action, float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        action();
+    }
 }
