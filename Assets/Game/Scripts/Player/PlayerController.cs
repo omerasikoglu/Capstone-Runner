@@ -158,9 +158,6 @@ public class PlayerController : MonoBehaviour
     public void ChangeItemPoint(bool isGoodItem)
     {
         currentItemPoint += isGoodItem ? 1 : -1;
-
-        if (isGoodItem) goodItemTakeFX.Play();
-        else badItemTakeFX.Play();
     }
 
     #region Test
