@@ -9,15 +9,12 @@ public class Gate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.CompareTag("Player"))
-        //{
-        //    Debug.Log("isGoodGate = " + isGoodGate);
-        //}
+        //if (other.CompareTag("Player")){ }
 
-        PlayerController player = other.attachedRigidbody.GetComponent<PlayerController>();
+        PlayerController player = other.GetComponentInParent<PlayerController>();
         if (player != null)
         {
-            //Debug.Log("isGoodGate = " + isGoodGate);
+            Debug.Log("isGoodGate = " + isGoodGate);
             player.ChangeOutfit(isGoodGate);
             SoundManager.Instance.PlaySound(audioClip);
         }
