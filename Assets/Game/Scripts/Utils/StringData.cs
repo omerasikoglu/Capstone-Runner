@@ -1,5 +1,9 @@
 public struct StringData
 {
+    //PlayerPrefs
+    public const string MONEY = "money";
+    public const string LEVEL = "level";
+
     //Input
     public const string HORIZONTAL = "Horizontal";
     public const string VERTICAL = "Vertical";

@@ -160,8 +160,16 @@ public class PlayerController : MonoBehaviour
         currentItemPoint += isGoodItem ? 1 : -1;
     }
 
+    [Button]
+    public void AddMoney()
+    {
+        int x = PlayerPrefs.GetInt(StringData.MONEY);
+        PlayerPrefs.SetInt(StringData.MONEY, ++x);
+        Debug.Log($"PlayerPrefs.GetInt(StringData.MONEY) = {PlayerPrefs.GetInt(StringData.MONEY)}");
+    }
+
     #region Test
     [Button] void addGood() { ChangeOutfit(true); }
-    [Button] void addBad() { ChangeOutfit(false); } 
+    [Button] void addBad() { ChangeOutfit(false); }
     #endregion
 }

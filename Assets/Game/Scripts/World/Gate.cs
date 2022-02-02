@@ -5,7 +5,6 @@ public class Gate : MonoBehaviour
 {
     [SerializeField] private AudioClip audioClip;
     [SerializeField] private bool isGoodGate;
-    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,12 +17,5 @@ public class Gate : MonoBehaviour
             player.ChangeOutfit(isGoodGate);
             SoundManager.Instance.PlaySound(audioClip);
         }
-
     }
-
-
-
-
-
-
 }

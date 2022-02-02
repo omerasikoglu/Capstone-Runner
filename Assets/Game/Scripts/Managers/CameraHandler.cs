@@ -11,7 +11,7 @@ public enum Cam
     RunningCam = 1,
     MinigameCam = 2,
     FinalPoseCam = 3,
-    RandomCam = 4
+    BeforeRunningCam = 4
 }
 
 public class CameraHandler : MonoBehaviour

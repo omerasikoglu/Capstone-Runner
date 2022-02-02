@@ -14,20 +14,24 @@ public enum GameState
 }
 public class GameManager : MonoBehaviour
 {
-    public static event Action<GameState> OnBeforeStateChanged;
-    public static event Action<GameState> OnAfterStateChanged;
+    public static event Action<GameState> OnStateChanged;
 
     [field: SerializeField] public GameState State { get; private set; }
 
     private CameraHandler cameraHandler;
-    private void Awake() => cameraHandler ??= GetComponent<CameraHandler>() ?? FindObjectOfType<CameraHandler>();
+    private void Awake()
+    {
+        cameraHandler = GetComponent<CameraHandler>() ?? FindObjectOfType<CameraHandler>();
+
+        //PlayerPrefs
+        PlayerPrefs.SetInt(StringData.MONEY, 0);
+        PlayerPrefs.SetInt(StringData.LEVEL, 1);
+    }
     private void Start() => ChangeState(GameState.Starting);
 
     public void ChangeState(GameState newState)
     {
         if (State == newState) return;
-
-        OnBeforeStateChanged?.Invoke(newState);
 
         State = newState;
 
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        OnAfterStateChanged?.Invoke(newState);
+        OnStateChanged?.Invoke(newState);
     }
 
     private void HandleStarting()
@@ -60,47 +64,43 @@ public class GameManager : MonoBehaviour
         //TODO: UI loading screen, some vCam cinematics
         Time.timeScale = 1f;
 
-        ChangeState(GameState.Starting);
-        StartCoroutine(WaitCertainAmountOfTime(() => { HandleRandomCam(); }, 1f));
+        StartCoroutine(WaitCertainAmountOfTime(() => { HandleBeforeRunning(); }, 1f));
     }
-    private void HandleRandomCam()
+    private void HandleBeforeRunning()
     {
-        // Run run
-        cameraHandler.SwitchCam(Cam.RandomCam);
+        cameraHandler.SwitchCam(Cam.BeforeRunningCam);
 
-        StartCoroutine(WaitCertainAmountOfTime(() => { HandleMinigame(); }, 1f));
+        StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Minigame); }, 1f));
     }
     private void HandleRunning()
     {
         // Run run
         cameraHandler.SwitchCam(Cam.RunningCam);
-        ChangeState(GameState.Running);
 
-        StartCoroutine(WaitCertainAmountOfTime(() => { HandleMinigame(); }, 4f));
+        StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Minigame); }, 3f));
     }
     private void HandleMinigame()
     {
         //Stop movement, Inputs changes, cameras changes 2 times at first and last
 
-        ChangeState(GameState.Minigame);
         cameraHandler.SwitchCam(Cam.MinigameCam);
-        StartCoroutine(WaitCertainAmountOfTime(() => { HandleFlying(); }, 5f));
-    }
 
-    private void HandleWin()
-    {
-        //Stop Moving, Trigger Win anims
-
-        ChangeState(GameState.Flying);
+        StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Flying); }, 5f));
     }
 
     private void HandleFlying()
     {
         //Flying
         cameraHandler.SwitchCam(Cam.FinalPoseCam);
-    }
 
-    private IEnumerator WaitCertainAmountOfTime(Action action, float secs)
+        StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Running); }, 3f));
+    }
+    private void HandleWin()
+    {
+        //Stop Moving, Trigger Win anims
+
+    }
+    private IEnumerator WaitCertainAmountOfTime(Action action, float secs = 0f)
     {
         yield return new WaitForSeconds(secs);
         action();
