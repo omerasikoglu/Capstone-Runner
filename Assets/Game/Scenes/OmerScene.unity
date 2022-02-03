@@ -187,21 +187,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSettings: {fileID: 11400000, guid: 73b4e9df8d8c8d242992db5547ee93dd, type: 2}
-  familiarController: {fileID: 1560248238}
-  goodGatePassFX: {fileID: 4295263500168828546}
-  badGatePassFX: {fileID: 8347153395306307252}
-  goodItemTakeFX: {fileID: 242542661}
-  badItemTakeFX: {fileID: 1247061712}
-  defaultOutfit: {fileID: 1636862868}
+  familiarController: {fileID: 0}
+  goodGatePassFX: {fileID: 0}
+  badGatePassFX: {fileID: 0}
+  goodItemTakeFX: {fileID: 0}
+  badItemTakeFX: {fileID: 0}
+  defaultOutfit: {fileID: 0}
   goodOutfitArray:
-  - {fileID: 198161106}
-  - {fileID: 1224064516}
-  - {fileID: 233177290}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   badOutfitArray:
-  - {fileID: 1097768636}
-  - {fileID: 431814324}
-  - {fileID: 547410423}
-  slideMovementRoot: {fileID: 1449463208}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  slideMovementRoot: {fileID: 0}
   leftLimit: {fileID: 1532277665}
   rightLimit: {fileID: 1834588683}
 --- !u!1 &76590532
@@ -16246,10 +16246,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 5800023818242944535, guid: 1424f3f10fa071041831c9312e177dea, type: 3}
-  distanceBetweenPlatforms: 10
   platformList:
   - {fileID: 2083848171}
   - {fileID: 967853457}
+  distanceBetweenPlatforms: 10
 --- !u!4 &693341962
 Transform:
   m_ObjectHideFlags: 0
