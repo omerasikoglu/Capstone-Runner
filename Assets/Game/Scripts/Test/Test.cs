@@ -147,19 +147,19 @@ namespace CommandPattern
         //Checks if we should start the replay
         void StartReplay()
         {
-            if (shouldStartReplay && oldCommands.Count > 0)
+            if (!shouldStartReplay || oldCommands.Count <= 0) return;
+
+            shouldStartReplay = false;
+
+            //Stop the coroutine so it starts from the beginning
+            if (replayCoroutine != null)
             {
-                shouldStartReplay = false;
-
-                //Stop the coroutine so it starts from the beginning
-                if (replayCoroutine != null)
-                {
-                    StopCoroutine(replayCoroutine);
-                }
-
-                //Start the replay
-                replayCoroutine = StartCoroutine(ReplayCommands(boxTrans));
+                StopCoroutine(replayCoroutine);
             }
+
+            //Start the replay
+            replayCoroutine = StartCoroutine(ReplayCommands(boxTrans));
+
         }
 
 
