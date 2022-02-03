@@ -8,7 +8,7 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerController player = other.attachedRigidbody.GetComponent<PlayerController>();
+        PlayerController player = other.GetComponentInParent<PlayerController>();
         if (player != null)
         {
             player.ChangeItemPoint(isGoodItem);

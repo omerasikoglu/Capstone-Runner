@@ -2,105 +2,91 @@
 using System;
 
 /// <summary>
-/// Çok kullanılan metodlar static olarak burada
+/// My Library
 /// </summary>
 public static class UtilsClass
 {
     private static Camera mainCamera;
 
-    #region GetPosition, Direction Stuff
-    /// <summary>
-    /// sol-alt köşe 0.0f | sağ-üst 1.0f | kamera hareket etse de hep böyle
-    /// </summary>
-    /// <param name="transform">default null</param>
-    /// <returns></returns>
-    public static Vector3 GetScreenToViewportPosition(Transform transform = null, float posZ = 0f)
+    #region Mouse or Object Position
+    public static Vector3 GetScreenToViewportPoint(Vector3? objectPosition = null, float posZ = 0f)
     {
-        if (mainCamera == null) mainCamera = Camera.main;
-        Vector3 mousePos = transform == null ? mainCamera.ScreenToViewportPoint(Input.mousePosition) :
-            Camera.main.ScreenToViewportPoint(transform.position);
-        mousePos.z = posZ;
-        return mousePos;
+        // sol-alt köşe 0.0f | sağ-üst 1.0f | kamera hareket etse de hep böyle
+        mainCamera ??= Camera.main;
+
+        Vector3 position = objectPosition == null ?
+            mainCamera.ScreenToViewportPoint(Input.mousePosition) : mainCamera.ScreenToViewportPoint((Vector3)objectPosition);
+
+        position.z = posZ;
+        return position;
     }
-    /// <summary>
-    /// sol-alt Dünyada neyse o -299 bile olabilir kamera konumu önemsiz
-    /// Dünyadaki 0,0,0 noktası origin olur
-    /// </summary>
-    /// <param name="transform">default null</param>
-    /// <returns></returns>
-    public static Vector3 GetScreenToWorldPosition(Transform transform = null, float posZ = 0f)
+    public static Vector3 GetScreenToWorldPoint(Vector3? objectPosition = null, float posZ = 0f)
     {
-        if (mainCamera == null) mainCamera = Camera.main;
-        Vector3 mouseWorldPosition = transform == null ? mainCamera.ScreenToWorldPoint(Input.mousePosition) :
-            Camera.main.ScreenToWorldPoint(transform.position);
-        //mouseWorldPosition.z = posZ;
-        return mouseWorldPosition;
+        // sol-alt Dünyada neyse o -299 bile olabilir kamera konumu önemsiz. Dünyadaki 0,0,0 noktası origin olur
+        mainCamera ??= Camera.main;
+
+        Vector3 position = objectPosition == null ?
+            mainCamera.ScreenToWorldPoint(Input.mousePosition) : mainCamera.ScreenToWorldPoint((Vector3)objectPosition);
+
+        Debug.DrawRay(position, mainCamera.transform.forward * 1000, Color.red);
+        position.z = posZ;
+        return position;
     }
-    /// <summary>
-    /// aynı Vector3'ten döndürmez hiç. ilk girdiğinde kameranın sol altı 0,0 olur
-    /// 70k'lara kadar çıkar ilerledikçe çok artar
-    /// </summary>
-    /// <param name="transform"></param>
-    /// <returns></returns>
-    public static Vector3 GetWorldToScreenPosition(Transform transform = null, float posZ = 0f)
+    public static Vector3 GetWorldToScreenPoint(Vector3? objectPosition = null, float posZ = 0f)
     {
-        if (mainCamera == null) mainCamera = Camera.main;
-        Vector3 mouseScreenPosition = transform == null ? Camera.main.WorldToScreenPoint(Input.mousePosition) :
-            Camera.main.WorldToScreenPoint(transform.position);
-        mouseScreenPosition.z = posZ;
-        return mouseScreenPosition;
+        // aynı Vec3'ten döndürmez hiç.İlk girdiğinde kameranın sol altı 0,0 olur.70k'lara kadar çıkar ilerledikçe çok artar
+        mainCamera ??= Camera.main;
+
+        Vector3 position = objectPosition == null ?
+            mainCamera.WorldToScreenPoint(Input.mousePosition) : mainCamera.WorldToScreenPoint((Vector3)objectPosition);
+
+        position.z = posZ;
+        return position;
     }
-    /// <summary>
-    /// ok atarken gitceði yön vektörünü bulmak için
-    /// </summary>
-    /// <param name="bulletSource"></param>
-    /// <returns></returns>
+    #endregion
+
+    #region Mouse ile obje arasındaki yön vektörü
     public static Vector3 GetMouseDirection(Transform bulletSource, float posZ = 0f)
     {
-        Vector3 mouseVector = GetScreenToWorldPosition() - bulletSource.position;
+        //ok atarken gitceði yön vektörünü bulmak için
+        Vector3 mouseVector = GetScreenToWorldPoint() - bulletSource.position;
         mouseVector.z = posZ;
         return mouseVector;
     }
-
-    /// <summary>
-    /// ok atarken gideceği yön vektörünü bulmak için
-    /// </summary>
-    /// <param name="bulletSource"></param>
-    /// <returns></returns>
-    public static Vector3 GetNormalizedMouseDirection(Transform bulletSource, float posZ = 0f)
+    public static Vector3 GetNormalizeMouseDirection(Transform bulletSource, float posZ = 0f)
     {
+        // ok atarken gideceği yön vektörünü bulmak için
         Vector3 mouseVector = GetMouseDirection(bulletSource, posZ);
         mouseVector.Normalize();
         return mouseVector;
     }
-    /// <summary>
-    /// x ekseninde random direction normalized
-    /// </summary>
-    /// <returns></returns>
+    #endregion
+
+    #region Random Directions
+    //Random Directions
     public static Vector3 GetRandomDirection2D()
     {
+        // random x ve y değerleri, z=0f
         return new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
     }
-    /// <summary>
-    /// nesneyi havaya fırlatma
-    /// </summary>
-    /// <returns></returns>
+
     public static Vector3 GetRandomUpDirection2D()
     {
+        // nesneyi havaya fırlatma
         return new Vector3(UnityEngine.Random.Range(-1f, 1f), 1f).normalized;
     }
-    /// <summary>
-    /// okun yönü düşmana göre dönsün diye
-    /// </summary>
-    /// <param name="vector"></param>
-    /// <returns></returns>
+    #endregion
+
+    #region Açılar, diferansiyeller mmm..
     public static float GetAngleFromVector(Vector3 vector)
     {
-        float radians = Mathf.Atan2(vector.y, vector.x);    //diferansiyel.. en sevdiðim mmm..
+        // okun yönü düşmana göre dönsün diye
+        float radians = Mathf.Atan2(vector.y, vector.x);
         float degrees = radians * Mathf.Rad2Deg;
         return degrees;
     }
     #endregion
+
 
     #region Colors
 
