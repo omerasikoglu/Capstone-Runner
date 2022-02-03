@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-
 public class PlayerController : MonoBehaviour
 {
     [SerializeField, BoxGroup("[Settings]")] private PlayerControllerSettings playerSettings;
@@ -11,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField, BoxGroup("[FXs]")] private ParticleSystem goodGatePassFX, badGatePassFX, goodItemTakeFX, badItemTakeFX;
     [SerializeField, BoxGroup("[Outfits]")] private Transform defaultOutfit;
     [SerializeField, BoxGroup("[Outfits]")] private Transform[] goodOutfitArray = new Transform[3], badOutfitArray = new Transform[3];
+
+    public float characterSpeed = 5f;
 
     #region Movement
     [SerializeField, BoxGroup("[Move]")] private Transform slideMovementRoot, leftLimit, rightLimit;
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float leftLimitX => leftLimit.localPosition.x;
     private float rightLimitX => rightLimit.localPosition.x;
 
-    private bool canMove = false;
+    private bool canMove = true;
     #endregion
 
     private int currentItemPoint = 0, currentOutfitPoint = 0;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         ResetOutfits();
+      
     }
     private void Update()
     {
@@ -87,6 +89,11 @@ public class PlayerController : MonoBehaviour
         slideMovementRoot.rotation = Quaternion.Lerp(slideMovementRoot.rotation, targetRotation, Time.deltaTime * playerSettings.RotationSpeed);
 
     }
+    private void HandleMovement()
+    {
+        transform.position += transform.forward * Time.deltaTime * characterSpeed;
+    
+    }
     private void CheckMovement()
     {
         if (!canMove && InputManager.IsClickDownAnything)
@@ -98,6 +105,8 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             //TODO: RUN
+            HandleMovement();
+
         }
     }
     #endregion
