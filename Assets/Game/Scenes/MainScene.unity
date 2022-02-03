@@ -23385,7 +23385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05bf1a9b615a0c1458fc095f649a534d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  times: 0
 --- !u!4 &1813721623
 Transform:
   m_ObjectHideFlags: 0
@@ -23888,6 +23887,7 @@ MonoBehaviour:
   vCam1: {fileID: 182862623}
   vCam2: {fileID: 1560836136}
   vCam3: {fileID: 86839755}
+  vCam4: {fileID: 0}
 --- !u!1 &2051626626
 GameObject:
   m_ObjectHideFlags: 0
