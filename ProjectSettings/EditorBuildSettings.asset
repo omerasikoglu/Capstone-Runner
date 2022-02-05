@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/HandeScene.unity
     guid: 24aee915860b4094db1da5279d9cf360
   - enabled: 1
-    path: Assets/Game/Art/Merve/Scenes/MerveScene.unity
+    path: Assets/Game/Scenes/MerveScene.unity
     guid: 02571a586a6d421448f831ca92c3d154
   - enabled: 1
     path: Assets/Game/Scenes/OmerScene.unity
