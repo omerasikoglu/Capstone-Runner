@@ -8,7 +8,7 @@ public enum GameState
     None = 0,
     Starting = 1,
     Running = 2,
-    Minigame = 3,
+    Kicking = 3,
     Flying = 4,
     Win = 5
 }
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
             case GameState.Running:
                 HandleRunning();
                 break;
-            case GameState.Minigame:
+            case GameState.Kicking:
                 HandleMinigame();
                 break;
             case GameState.Flying:
@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     private void HandleStarting()
     {
         //TODO: UI loading screen, some vCam cinematics
+        Time.timeScale = 1f;
 
         UIManager.Instance.ChangeLoadingUI();
         StartCoroutine(WaitCertainAmountOfTime(() => { UIManager.Instance.ChangeLoadingUI(); }, 1f));
@@ -67,17 +68,17 @@ public class GameManager : MonoBehaviour
     private void HandleRunning()
     {
         // Run run
-        Time.timeScale = 1f;
+
 
         cameraHandler.SwitchCam(Cam.RunningCam);
 
-        StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Minigame); }, 4f));
+        //StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Kicking); }, 4f));
     }
     private void HandleMinigame()
     {
         //Stop movement, Inputs changes, cameras changes 2 times at first and last
 
-        ChangeState(GameState.Minigame);
+        ChangeState(GameState.Kicking);
         cameraHandler.SwitchCam(Cam.MinigameCam);
         StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Flying); }, 5f));
     }

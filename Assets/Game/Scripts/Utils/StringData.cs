@@ -28,6 +28,13 @@ public struct StringData
 
 
     //Animator
+    public const string PUNCH = "punch";
+    public const string FALL = "fall";
+    public const string RUNNING = "running";
+    public const string IDLE = "idle";
+
+
+    //
     public const string ISACTIVE = "isActive";
     public const string ISDANCING = "isDancing";
     public const string PRESSEDJUMP = "isPressedJump";

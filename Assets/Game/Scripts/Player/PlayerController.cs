@@ -7,6 +7,7 @@ using NaughtyAttributes;
 public class PlayerController : MonoBehaviour
 {
     public float characterSpeed = 5f;
+    [SerializeField, BoxGroup("[Animator]")] private Animator animator;
     [SerializeField, BoxGroup("[Settings]")] private PlayerControllerSettings playerSettings;
     [SerializeField, BoxGroup("[Settings]")] private FamiliarController familiarController;
     [SerializeField, BoxGroup("[FXs]")] private ParticleSystem goodGatePassFX, badGatePassFX, goodItemTakeFX, badItemTakeFX;
@@ -166,6 +167,33 @@ public class PlayerController : MonoBehaviour
     public void ChangeItemPoint(bool isGoodItem)
     {
         currentItemPoint += isGoodItem ? 1 : -1;
+    }
+
+    //Animations
+    [Button]
+    public void StartIdle()
+    {
+        animator.SetTrigger(StringData.IDLE);
+    }
+    [Button]
+    public void StartRun()
+    {
+        animator.SetTrigger(StringData.RUNNING);
+    }
+    [Button]
+    public void StartFall()
+    {
+        animator.SetTrigger(StringData.FALL);
+    }
+    [Button]
+    public void StartPunch()
+    {
+        animator.SetTrigger(StringData.PUNCH);
+    }
+    [Button]
+    public void StartLose()
+    {
+        //TODO: Start Lose Animation
     }
 
     #region Test
