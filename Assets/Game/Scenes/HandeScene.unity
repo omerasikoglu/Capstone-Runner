@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942c00862789f894b9832274ed2e54f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSpeed: 5
+  characterSpeed: 10
   playerSettings: {fileID: 11400000, guid: 73b4e9df8d8c8d242992db5547ee93dd, type: 2}
   familiarController: {fileID: 1560248238}
   goodGatePassFX: {fileID: 1229794318}
@@ -16808,7 +16808,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &693341961
 MonoBehaviour:
   m_ObjectHideFlags: 0
