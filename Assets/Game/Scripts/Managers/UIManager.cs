@@ -2,67 +2,76 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using NaughtyAttributes;
 
-    public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour
+{
+    public static UIManager Instance { get; private set; }
+
+    //private Transform youWinUI;
+    [SerializeField] private Transform tapToStartUI;
+    [SerializeField] private Transform youLoseUI;   
+    [SerializeField] private Transform youWinUI;    
+    [SerializeField] private Transform inGameUI;    
+    [SerializeField] private Transform loadingUI;
+
+    [SerializeField] private TextMeshProUGUI textMesh;
+    [SerializeField] private TextMeshProUGUI textMeshScore;
+
+    private List<Transform> UIList;
+
+
+
+    protected void Awake()
     {
-        public static UIManager Instance { get; private set; }
+        Instance ??= this;
+        UIList = new List<Transform>(5) { tapToStartUI, youLoseUI, youWinUI, inGameUI, loadingUI };
 
-        //private Transform youWinUI;
-        private Transform tapToStartUI;
-        private Transform gameOverUI;
-        private Transform inGameUI;
-
-        private TextMeshProUGUI textMesh;
-        private TextMeshProUGUI textMeshScore;
-
-        private int currentScore = 0;
+        //UpdateScore();
+    }
 
 
+    public void UpdateScore()
+    {
+        textMesh.SetText(PlayerPrefs.GetInt(StringData.MONEY).ToString());
+    }
 
-        protected void Awake()
+    //UIs
+    [Button]
+    public void ChangeLoadingUI()
+    {
+        loadingUI.gameObject.SetActive(!loadingUI.gameObject.activeInHierarchy);
+    }
+    [Button]
+    public void ChangeTapToStartUI()
+    {
+        tapToStartUI.gameObject.SetActive(!tapToStartUI.gameObject.activeInHierarchy);
+    }
+    [Button]
+    public void ChangeGameOverUI()
+    {
+        youLoseUI.gameObject.SetActive(!youLoseUI.gameObject.activeInHierarchy);
+        textMeshScore.SetText("(Total Score:" + PlayerPrefs.GetInt(StringData.MONEY) + ")");
+    }
+    [Button]
+    public void ChangeYouWinUI()
+    {
+        youWinUI.gameObject.SetActive(!youWinUI.gameObject.activeInHierarchy);
+        textMeshScore.SetText("(Total Score:" + PlayerPrefs.GetInt(StringData.MONEY) + ")");
+    }
+    [Button]
+    public void ChangeInGameUI()
+    {
+        inGameUI.gameObject.SetActive(!inGameUI.gameObject.activeInHierarchy);
+    }
+  
+
+    private void DisableAllUIs()
+    {
+        foreach (Transform transform in UIList)
         {
-            Instance = this;
-
-            Init();
-
-            SetActiveTapToStartUI();
-            UpdateScore();
-        }
-
-        private void Init()
-        {
-            //youWinUI = transform.Find(StringData.YOUWIN_UI);
-            tapToStartUI = transform.Find(StringData.TAPTOSTART_UI);
-            gameOverUI = transform.Find(StringData.GAMEOVER_UI);
-            inGameUI = transform.Find(StringData.INGAME_UI);
-            textMesh = inGameUI.Find(StringData.BACKGROUND).Find(StringData.TEXT).GetComponent<TextMeshProUGUI>();
-            textMeshScore = gameOverUI.Find(StringData.BACKGROUND).Find(StringData.TEXT).GetComponent<TextMeshProUGUI>();
-        }
-
-        public void UpdateScore(int amount = 0)
-        {
-            currentScore += amount;
-            textMesh.SetText(currentScore.ToString());
-        }
-
-        public void SetDeactiveTapToStartUI()
-        {
-            tapToStartUI.gameObject.SetActive(false);
-            Time.timeScale = 1f;
-        }
-        public void SetActiveTapToStartUI()
-        {
-            tapToStartUI.gameObject.SetActive(true);
-            Time.timeScale = 0f;
-        }
-        public void SetActiveGameOverUI()
-        {
-            gameOverUI.gameObject.SetActive(true);
-            //Time.timeScale = 0f;
-            textMeshScore.SetText("(Total Score:" + currentScore + ")");
-        }
-        public void SetActiveInGameUI()
-        {
-            inGameUI.gameObject.SetActive(true);
+            transform.gameObject.SetActive(false);
         }
     }
+
+}

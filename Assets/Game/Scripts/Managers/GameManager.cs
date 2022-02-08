@@ -58,18 +58,20 @@ public class GameManager : MonoBehaviour
     private void HandleStarting()
     {
         //TODO: UI loading screen, some vCam cinematics
-        Time.timeScale = 1f;
 
-        ChangeState(GameState.Starting);
-        StartCoroutine(WaitCertainAmountOfTime(() => { HandleRunning(); }, 1f));
+        UIManager.Instance.ChangeLoadingUI();
+        StartCoroutine(WaitCertainAmountOfTime(() => { UIManager.Instance.ChangeLoadingUI(); }, 1f));
+
+        StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Running); }, 3f));
     }
     private void HandleRunning()
     {
         // Run run
-        cameraHandler.SwitchCam(Cam.RunningCam);
-        ChangeState(GameState.Running);
+        Time.timeScale = 1f;
 
-        StartCoroutine(WaitCertainAmountOfTime(() => { HandleMinigame(); }, 4f));
+        cameraHandler.SwitchCam(Cam.RunningCam);
+
+        StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Minigame); }, 4f));
     }
     private void HandleMinigame()
     {
@@ -77,7 +79,7 @@ public class GameManager : MonoBehaviour
 
         ChangeState(GameState.Minigame);
         cameraHandler.SwitchCam(Cam.MinigameCam);
-        StartCoroutine(WaitCertainAmountOfTime(() => { HandleFlying(); }, 5f));
+        StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Flying); }, 5f));
     }
 
     private void HandleWin()

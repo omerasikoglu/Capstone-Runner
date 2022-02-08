@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
         {
             //first move
             canMove = !canMove;
-            UIManager.Instance.SetDeactiveTapToStartUI();
+            UIManager.Instance.ChangeTapToStartUI();
         }
         if (canMove)
         {

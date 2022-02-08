@@ -1,5 +1,9 @@
 public struct StringData
 {
+    //PlayerPrefs
+    public const string MONEY = "money";
+    public const string LEVEL = "level";
+
     //Input
     public const string HORIZONTAL = "Horizontal";
     public const string VERTICAL = "Vertical";
@@ -7,16 +11,21 @@ public struct StringData
     public const string MOUSE_Y = "Mouse Y";
 
     //UI
+    public const string LOADING_UI = "Loading_UI";
+    public const string INGAME_UI = "InGameUI";
+    public const string YOUWIN_UI = "YouWinUI";
+    public const string YOULOSE_UI = "YouLoseUI";
+    
     public const string BACKGROUND = "background";
     public const string TEXT = "text";
     public const string IMAGE = "image";
     public const string BAR = "bar";
 
     public const string SCORE_UI = "ScoreUI";
-    public const string YOUWIN_UI = "YouWinUI";
+
     public const string TAPTOSTART_UI = "TapToStartUI";
     public const string GAMEOVER_UI = "GameOverUI";
-    public const string INGAME_UI = "InGameUI";
+
 
     //Animator
     public const string ISACTIVE = "isActive";
