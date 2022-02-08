@@ -32,6 +32,7 @@ public struct StringData
     public const string FALL = "fall";
     public const string RUNNING = "running";
     public const string IDLE = "idle";
+    public const string SPIN = "spin";
 
 
     //

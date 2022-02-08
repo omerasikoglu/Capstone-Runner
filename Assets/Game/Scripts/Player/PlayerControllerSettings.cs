@@ -6,8 +6,7 @@ using UnityEngine;
 public class PlayerControllerSettings : ScriptableObject
 {
 
-    [SerializeField] private float movementSpeed;
-    public float MovementSpeed => movementSpeed;
+    public float movementSpeed;
    
     [SerializeField] private float jumpHeightY;
     public float JumpHeightY => jumpHeightY;

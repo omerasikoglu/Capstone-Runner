@@ -1,12 +1,12 @@
 using UnityEngine;
 using System;
-using System.Collections;
 
 [Serializable]
 public enum GameState
 {
     None = 0,
     Starting = 1,
+    TapToScreen = 6,
     Running = 2,
     Kicking = 3,
     Flying = 4,
@@ -14,8 +14,7 @@ public enum GameState
 }
 public class GameManager : MonoBehaviour
 {
-    public static event Action<GameState> OnBeforeStateChanged;
-    public static event Action<GameState> OnAfterStateChanged;
+    public static event Action<GameState> OnStateChanged;
 
     [field: SerializeField] public GameState State { get; private set; }
 
@@ -26,8 +25,6 @@ public class GameManager : MonoBehaviour
     public void ChangeState(GameState newState)
     {
         if (State == newState) return;
-
-        OnBeforeStateChanged?.Invoke(newState);
 
         State = newState;
 
@@ -48,11 +45,16 @@ public class GameManager : MonoBehaviour
             case GameState.Win:
                 HandleWin();
                 break;
+            case GameState.None:
+                break;
+            case GameState.TapToScreen:
+                HandleTapToScreen();
+                break;
             default:
                 break;
         }
 
-        OnAfterStateChanged?.Invoke(newState);
+        OnStateChanged?.Invoke(newState);
     }
 
     private void HandleStarting()
@@ -60,45 +62,45 @@ public class GameManager : MonoBehaviour
         //TODO: UI loading screen, some vCam cinematics
         Time.timeScale = 1f;
 
+        //open
         UIManager.Instance.ChangeLoadingUI();
-        StartCoroutine(WaitCertainAmountOfTime(() => { UIManager.Instance.ChangeLoadingUI(); }, 1f));
 
-        StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Running); }, 3f));
+        //close
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => 
+        { UIManager.Instance.ChangeLoadingUI(); ChangeState(GameState.TapToScreen); }, 2f));
+
+    }
+    private void HandleTapToScreen()
+    {
+        UIManager.Instance.ChangeTapToStartUI();
     }
     private void HandleRunning()
     {
-        // Run run
+        //Close
+        UIManager.Instance.ChangeTapToStartUI();
 
-
+        //Play
         cameraHandler.SwitchCam(Cam.RunningCam);
 
-        //StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Kicking); }, 4f));
     }
     private void HandleMinigame()
     {
-        //Stop movement, Inputs changes, cameras changes 2 times at first and last
-
         ChangeState(GameState.Kicking);
         cameraHandler.SwitchCam(Cam.MinigameCam);
-        StartCoroutine(WaitCertainAmountOfTime(() => { ChangeState(GameState.Flying); }, 5f));
-    }
 
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { ChangeState(GameState.Flying); }, 5f));
+    }
     private void HandleWin()
     {
-        //Stop Moving, Trigger Win anims
-
         ChangeState(GameState.Flying);
     }
-
     private void HandleFlying()
     {
-        //Flying
         cameraHandler.SwitchCam(Cam.FinalPoseCam);
     }
 
-    private IEnumerator WaitCertainAmountOfTime(Action action, float secs)
+    public void SwitchToRunning()
     {
-        yield return new WaitForSeconds(secs);
-        action();
+        ChangeState(GameState.Running);
     }
 }

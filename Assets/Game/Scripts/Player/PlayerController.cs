@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-
+using System;
 
 public class PlayerController : MonoBehaviour
 {
-    public float characterSpeed = 5f;
     [SerializeField, BoxGroup("[Animator]")] private Animator animator;
     [SerializeField, BoxGroup("[Settings]")] private PlayerControllerSettings playerSettings;
     [SerializeField, BoxGroup("[Settings]")] private FamiliarController familiarController;
@@ -26,11 +25,42 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     private int currentItemPoint = 0, currentOutfitPoint = 0;
+    private bool? areUGood = true;
 
     private void Start()
     {
+        GameManager.OnStateChanged += GameManager_OnStateChanged;
         ResetOutfits();
     }
+
+    private void GameManager_OnStateChanged(GameState obj)
+    {
+        Debug.Log(obj);
+        switch (obj)
+        {
+            case GameState.None:
+                break;
+            case GameState.Starting:
+                StartIdle();
+                break;
+            case GameState.TapToScreen:
+                break;
+            case GameState.Running:
+                StartRun();
+                break;
+            case GameState.Kicking:
+                StartKick();
+                break;
+            case GameState.Flying:
+                break;
+            case GameState.Win:
+                StartWin();
+                break;
+            default:
+                break;
+        }
+    }
+
     private void Update()
     {
         HandleInput();
@@ -91,7 +121,7 @@ public class PlayerController : MonoBehaviour
     }
     private void HandleMovement()
     {
-        transform.position += transform.forward * Time.deltaTime * characterSpeed;
+        transform.position += transform.forward * Time.deltaTime * playerSettings.movementSpeed;
 
     }
     private void CheckMovement()
@@ -164,21 +194,35 @@ public class PlayerController : MonoBehaviour
             familiarController.RemoveOldFamiliar();
         }
     }
-    public void ChangeItemPoint(bool isGoodItem)
+    public void ChangeItemPoint(bool? isGoodItem)
     {
-        currentItemPoint += isGoodItem ? 1 : -1;
+        currentItemPoint += isGoodItem == true ? 1 : -1;
+        StartSpin();
     }
 
-    //Animations
+    private void SetCharacterSpeed(float speed)
+    {
+        playerSettings.movementSpeed = speed;
+    }
+
+    #region Animations
     [Button]
     public void StartIdle()
     {
         animator.SetTrigger(StringData.IDLE);
+        SetCharacterSpeed(0f);
     }
     [Button]
     public void StartRun()
     {
         animator.SetTrigger(StringData.RUNNING);
+        SetCharacterSpeed(2f);
+    }
+    [Button]
+    public void StartSpin()
+    {
+        animator.SetTrigger(StringData.SPIN);
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { StartRun(); }, 1.5f));
     }
     [Button]
     public void StartFall()
@@ -190,14 +234,26 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger(StringData.PUNCH);
     }
+
+    [Button]
+    public void StartWin()
+    {
+        //TODO: Start Win Animation
+    }
     [Button]
     public void StartLose()
     {
         //TODO: Start Lose Animation
     }
+    [Button]
+    public void StartKick()
+    {
+        //TODO: Start Kick Animation
+    }
+    #endregion
 
     #region Test
     [Button] void addGood() { ChangeOutfit(true); }
-    [Button] void addBad() { ChangeOutfit(false); } 
+    [Button] void addBad() { ChangeOutfit(false); }
     #endregion
 }

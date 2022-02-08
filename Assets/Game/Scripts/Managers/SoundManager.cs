@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         Instance ??= this;
-        audioSource ??= GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
     public void PlaySound(AudioClip clip, float volume = .3f)
     {

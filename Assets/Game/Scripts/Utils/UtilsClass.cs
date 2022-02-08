@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 
 /// <summary>
 /// My Library
@@ -87,7 +88,6 @@ public static class UtilsClass
     }
     #endregion
 
-
     #region Colors
 
     // Get Hex Color FF00FF
@@ -136,5 +136,11 @@ public static class UtilsClass
         return Convert.ToInt32(hex, 16);
     }
     #endregion
+
+    public static IEnumerator WaitCertainAmountOfTime(Action action, float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        action();
+    }
 
 }
