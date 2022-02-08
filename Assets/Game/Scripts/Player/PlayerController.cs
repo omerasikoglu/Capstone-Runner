@@ -6,6 +6,7 @@ using NaughtyAttributes;
 
 public class PlayerController : MonoBehaviour
 {
+    public float characterSpeed = 5f;
     [SerializeField, BoxGroup("[Settings]")] private PlayerControllerSettings playerSettings;
     [SerializeField, BoxGroup("[Settings]")] private FamiliarController familiarController;
     [SerializeField, BoxGroup("[FXs]")] private ParticleSystem goodGatePassFX, badGatePassFX, goodItemTakeFX, badItemTakeFX;
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float leftLimitX => leftLimit.localPosition.x;
     private float rightLimitX => rightLimit.localPosition.x;
 
-    private bool canMove = false;
+    private bool canMove = true;
     #endregion
 
     private int currentItemPoint = 0, currentOutfitPoint = 0;
@@ -87,6 +88,11 @@ public class PlayerController : MonoBehaviour
         slideMovementRoot.rotation = Quaternion.Lerp(slideMovementRoot.rotation, targetRotation, Time.deltaTime * playerSettings.RotationSpeed);
 
     }
+    private void HandleMovement()
+    {
+        transform.position += transform.forward * Time.deltaTime * characterSpeed;
+
+    }
     private void CheckMovement()
     {
         if (!canMove && InputManager.IsClickDownAnything)
@@ -98,6 +104,8 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             //TODO: RUN
+            HandleMovement();
+
         }
     }
     #endregion
