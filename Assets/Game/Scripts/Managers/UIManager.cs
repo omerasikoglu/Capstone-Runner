@@ -20,25 +20,22 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     //private Transform youWinUI;
-    [SerializeField] private Transform tapToStartUI;
-    [SerializeField] private Transform youLoseUI;
-    [SerializeField] private Transform youWinUI;
-    [SerializeField] private Transform inGameUI;
-    [SerializeField] private Transform loadingUI;
+    [SerializeField, BoxGroup("[UI]")] private Transform tapToStartUI, youLoseUI, youWinUI, inGameUI, loadingUI;
 
-    [SerializeField] private TextMeshProUGUI textMesh;
-    [SerializeField] private TextMeshProUGUI textMeshScore;
+    [SerializeField, BoxGroup("[Text Mesh Roots]")] private List<TextMeshProUGUI> moneyList, levelList;
 
-    private List<Transform> UIList;
+    //[SerializeField] private TextMeshProUGUI textMesh;
+    //[SerializeField] private TextMeshProUGUI textMeshScore;
+
+    private List<Transform> uiList;
+
     private GameUI ui;
 
 
     protected void Awake()
     {
         Instance ??= this;
-        UIList = new List<Transform>(5) { tapToStartUI, youLoseUI, youWinUI, inGameUI, loadingUI };
-
-        //UpdateScore();
+        uiList = new List<Transform>(5) { tapToStartUI, youLoseUI, youWinUI, inGameUI, loadingUI };
     }
 
     public void SwitchUI(GameUI newUI)
@@ -73,20 +70,30 @@ public class UIManager : MonoBehaviour
         }
 
     }
-    public void UpdateScore()
+    public void UpdateLevel()
     {
-        textMesh.SetText(PlayerPrefs.GetInt(StringData.PREF_MONEY).ToString());
+        foreach (TextMeshProUGUI textMesh in levelList)
+        {
+            textMesh.SetText($"LEVEL {PlayerPrefs.GetInt(StringData.PREF_LEVEL)}");
+        }
+    }
+    public void UpdateMoney()
+    {
+        foreach (TextMeshProUGUI textMesh in moneyList)
+        {
+            textMesh.SetText(PlayerPrefs.GetInt(StringData.PREF_MONEY).ToString());
+        }
     }
 
-    //UIs
+    //UI
     private void DisableAllUIs()
     {
-        foreach (Transform transform in UIList)
+        foreach (Transform transform in uiList)
         {
             transform.gameObject.SetActive(false);
         }
     }
-   
+
     [Button]
     private void ChangeLoadingUI()
     {
@@ -101,18 +108,19 @@ public class UIManager : MonoBehaviour
     private void ChangeGameOverUI()
     {
         youLoseUI.gameObject.SetActive(!youLoseUI.gameObject.activeInHierarchy);
-        textMeshScore.SetText("(Total Score:" + PlayerPrefs.GetInt(StringData.PREF_MONEY) + ")");
+        UpdateMoney();
     }
     [Button]
     private void ChangeYouWinUI()
     {
         youWinUI.gameObject.SetActive(!youWinUI.gameObject.activeInHierarchy);
-        textMeshScore.SetText("(Total Score:" + PlayerPrefs.GetInt(StringData.PREF_MONEY) + ")");
+        UpdateMoney();
     }
     [Button]
     private void ChangeInGameUI()
     {
         inGameUI.gameObject.SetActive(!inGameUI.gameObject.activeInHierarchy);
+        UpdateMoney();
     }
 
 }

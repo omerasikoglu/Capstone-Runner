@@ -206,9 +206,9 @@ public class PlayerController : MonoBehaviour
     }
     public void ChangeItemPoint(bool? isGoodItem)
     {
-        currentItemPoint += isGoodItem == true ? 1 : -1;
+        currentItemPoint += isGoodItem == true ? 100 : -100;
         PlayerPrefs.SetInt(StringData.PREF_MONEY, currentItemPoint);
-        //TODO: UI BAR
+        UIManager.Instance.UpdateMoney();
 
         StartSpin();
     }
@@ -230,7 +230,7 @@ public class PlayerController : MonoBehaviour
     public void StartSpin()
     {
         animator.SetTrigger(StringData.SPIN);
-        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { StartRun(); }, 1.5f));
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { StartRun(); }, 1f));
     }
     [Button]
     public void StartFall()
@@ -246,13 +246,23 @@ public class PlayerController : MonoBehaviour
     public void StartFail()
     {
         SetCharacterSpeed(0f);
-        animator.SetTrigger(StringData.FAIL);
+        animator.SetTrigger(StringData.IDLE);
+
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { animator.SetTrigger(StringData.FAIL); }, 2f));
     }
     [Button]
     public void StartWin()
     {
         SetCharacterSpeed(0f);
-        animator.SetTrigger(StringData.SPIN);
+        animator.SetTrigger(StringData.IDLE);
+
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
+        {
+            animator.speed = 0.5f;
+            animator.SetTrigger(StringData.SPIN);
+        }, 2f));
+
+
     }
 
     #endregion

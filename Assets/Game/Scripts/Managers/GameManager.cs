@@ -69,6 +69,9 @@ public class GameManager : MonoBehaviour
     private void HandleStarting()
     {
         PlayerPrefs.SetInt(StringData.PREF_MONEY, 0);
+        UIManager.Instance.UpdateMoney();
+        UIManager.Instance.UpdateLevel();
+
         Time.timeScale = 1f;
 
         //open
