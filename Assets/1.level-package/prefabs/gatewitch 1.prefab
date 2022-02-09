@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WITCH
+  m_text: BAT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a40a5d9c68de594f87ce8838d3cf24e, type: 2}
   m_sharedMaterial: {fileID: -3015333170186130805, guid: 4a40a5d9c68de594f87ce8838d3cf24e, type: 2}
@@ -245,6 +245,10 @@ GameObject:
   - component: {fileID: 394209369890055355}
   - component: {fileID: 8571159265633272790}
   - component: {fileID: 6882464756537291795}
+  - component: {fileID: 2687607353011240393}
+  - component: {fileID: 2687607353011240392}
+  - component: {fileID: 1623603624}
+  - component: {fileID: 1623603623}
   m_Layer: 0
   m_Name: gatewitch 1
   m_TagString: Untagged
@@ -261,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 3986851607882046428}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 1.6, y: 0, z: 10.05}
-  m_LocalScale: {x: 108.338394, y: 100, z: 100}
+  m_LocalScale: {x: 108.3384, y: 100, z: 100}
   m_Children:
   - {fileID: 2687607351648567546}
   m_Father: {fileID: 0}
@@ -295,7 +299,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 22ccee876b6547f489184632258966c7, type: 2}
-  - {fileID: 2100000, guid: f1dde7d646620e24595d7f80150e63ed, type: 2}
+  - {fileID: 2100000, guid: 1029eeaf68e816c4082b12fa9455a4ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -317,3 +321,57 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2687607353011240393
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986851607882046428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.041536536, y: 0.031000005, z: 0.0009510566}
+  m_Center: {x: 0.020765217, y: -2.950914e-16, z: 9.1677066e-10}
+--- !u!114 &2687607353011240392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986851607882046428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c032acfab0d133747877ac8a76cacc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: add7c9ad717475448b5b16fe86482fde, type: 3}
+  isGoodGate: 0
+--- !u!65 &1623603624
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986851607882046428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.041536536, y: 0.031000005, z: 0.0009510566}
+  m_Center: {x: 0.020765217, y: -2.950914e-16, z: 9.1677066e-10}
+--- !u!114 &1623603623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986851607882046428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c032acfab0d133747877ac8a76cacc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: add7c9ad717475448b5b16fe86482fde, type: 3}
+  isGoodGate: 0

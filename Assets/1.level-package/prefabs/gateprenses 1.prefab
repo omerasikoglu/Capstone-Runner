@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PRENSESS
+  m_text: WINGS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a40a5d9c68de594f87ce8838d3cf24e, type: 2}
   m_sharedMaterial: {fileID: -3015333170186130805, guid: 4a40a5d9c68de594f87ce8838d3cf24e, type: 2}
@@ -245,6 +245,12 @@ GameObject:
   - component: {fileID: 7563272480374523240}
   - component: {fileID: 6870803816337967821}
   - component: {fileID: 8700119826471452167}
+  - component: {fileID: 5188805018194820915}
+  - component: {fileID: 5188805018194820914}
+  - component: {fileID: 1274083925}
+  - component: {fileID: 1274083924}
+  - component: {fileID: 1122644555}
+  - component: {fileID: 1122644554}
   m_Layer: 0
   m_Name: gateprenses 1
   m_TagString: Untagged
@@ -261,7 +267,7 @@ Transform:
   m_GameObject: {fileID: 7187169493196890066}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -1.6, y: 0, z: 10.05}
-  m_LocalScale: {x: 108.338394, y: 100, z: 100}
+  m_LocalScale: {x: 108.3384, y: 100, z: 100}
   m_Children:
   - {fileID: 5188805019225937202}
   m_Father: {fileID: 0}
@@ -295,7 +301,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: cd873e2d1dc87e94aa128c20beea5914, type: 2}
-  - {fileID: 2100000, guid: f1dde7d646620e24595d7f80150e63ed, type: 2}
+  - {fileID: 2100000, guid: 59842626ef85b0a46a6a0c7f3be02f18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -317,3 +323,84 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5188805018194820915
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187169493196890066}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.041536536, y: 0.031000005, z: 0.0009510566}
+  m_Center: {x: 0.020765217, y: -2.950914e-16, z: 9.1677066e-10}
+--- !u!114 &5188805018194820914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187169493196890066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c032acfab0d133747877ac8a76cacc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 00812edcaf16fd24795b6a060cc1ceb2, type: 3}
+  isGoodGate: 1
+--- !u!65 &1274083925
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187169493196890066}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.041536536, y: 0.031000005, z: 0.0009510566}
+  m_Center: {x: 0.020765217, y: -2.950914e-16, z: 9.1677066e-10}
+--- !u!114 &1274083924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187169493196890066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c032acfab0d133747877ac8a76cacc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 00812edcaf16fd24795b6a060cc1ceb2, type: 3}
+  isGoodGate: 1
+--- !u!65 &1122644555
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187169493196890066}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.041536536, y: 0.031000005, z: 0.0009510566}
+  m_Center: {x: 0.020765217, y: -2.950914e-16, z: 9.1677066e-10}
+--- !u!114 &1122644554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187169493196890066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c032acfab0d133747877ac8a76cacc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 00812edcaf16fd24795b6a060cc1ceb2, type: 3}
+  isGoodGate: 1
