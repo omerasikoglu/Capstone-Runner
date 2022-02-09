@@ -245,12 +245,8 @@ GameObject:
   - component: {fileID: 7563272480374523240}
   - component: {fileID: 6870803816337967821}
   - component: {fileID: 8700119826471452167}
-  - component: {fileID: 5188805018194820915}
-  - component: {fileID: 5188805018194820914}
-  - component: {fileID: 1274083925}
-  - component: {fileID: 1274083924}
-  - component: {fileID: 1122644555}
-  - component: {fileID: 1122644554}
+  - component: {fileID: 5938156892966405248}
+  - component: {fileID: 4307911302855890131}
   m_Layer: 0
   m_Name: gateprenses 1
   m_TagString: Untagged
@@ -323,20 +319,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5188805018194820915
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7187169493196890066}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.041536536, y: 0.031000005, z: 0.0009510566}
-  m_Center: {x: 0.020765217, y: -2.950914e-16, z: 9.1677066e-10}
---- !u!114 &5188805018194820914
+--- !u!114 &5938156892966405248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -350,7 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 00812edcaf16fd24795b6a060cc1ceb2, type: 3}
   isGoodGate: 1
---- !u!65 &1274083925
+--- !u!65 &4307911302855890131
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -363,44 +346,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.041536536, y: 0.031000005, z: 0.0009510566}
   m_Center: {x: 0.020765217, y: -2.950914e-16, z: 9.1677066e-10}
---- !u!114 &1274083924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7187169493196890066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c032acfab0d133747877ac8a76cacc87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 00812edcaf16fd24795b6a060cc1ceb2, type: 3}
-  isGoodGate: 1
---- !u!65 &1122644555
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7187169493196890066}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.041536536, y: 0.031000005, z: 0.0009510566}
-  m_Center: {x: 0.020765217, y: -2.950914e-16, z: 9.1677066e-10}
---- !u!114 &1122644554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7187169493196890066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c032acfab0d133747877ac8a76cacc87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 00812edcaf16fd24795b6a060cc1ceb2, type: 3}
-  isGoodGate: 1

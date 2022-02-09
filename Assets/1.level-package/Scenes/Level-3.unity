@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11117,8 +11117,8 @@ GameObject:
   - component: {fileID: 2374648881673812551}
   - component: {fileID: 1683124732552885730}
   - component: {fileID: 3512629928815083816}
-  - component: {fileID: 5188805019241942372}
   - component: {fileID: 5188805019241942373}
+  - component: {fileID: 3152416655796232446}
   m_Layer: 0
   m_Name: gateprenses
   m_TagString: Untagged
@@ -11126,6 +11126,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &3152416655796232446
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3152416655796232445}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.041536536, y: 0.031000005, z: 0.0009510566}
+  m_Center: {x: 0.020765217, y: -2.950914e-16, z: 9.1677066e-10}
 --- !u!23 &3512629928815083816
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11775,19 +11788,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!65 &5188805019241942372
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152416655796232445}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.041536536, y: 0.031000005, z: 0.0009510566}
-  m_Center: {x: 0.020765217, y: -2.950914e-16, z: 9.1677066e-10}
 --- !u!114 &5188805019241942373
 MonoBehaviour:
   m_ObjectHideFlags: 0

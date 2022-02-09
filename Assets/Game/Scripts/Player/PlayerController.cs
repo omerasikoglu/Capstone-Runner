@@ -195,6 +195,7 @@ public class PlayerController : MonoBehaviour
         {
             goodGatePassFX.Play();
             familiarController.AddNewFamiliar();
+            StartSpin();
         }
         else
         {
@@ -224,7 +225,7 @@ public class PlayerController : MonoBehaviour
     public void StartRun()
     {
         animator.SetTrigger(StringData.RUNNING);
-        SetCharacterSpeed(2f);
+        SetCharacterSpeed(5f);
     }
     [Button]
     public void StartSpin()
