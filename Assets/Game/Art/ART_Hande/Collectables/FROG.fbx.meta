@@ -3,7 +3,22 @@ guid: ffd12f19c89ba5d41957c1d4faccb4c4
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FROG
+    second: {fileID: 2100000, guid: 92d7ec905cf60354bb54719fdf28e23a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FROGEYE
+    second: {fileID: 2100000, guid: 2257f1ec18f0e4343b557ab140572cb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FROGEYEW
+    second: {fileID: 2100000, guid: 7e0759f1e15644744a457ea0558a8c61, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
