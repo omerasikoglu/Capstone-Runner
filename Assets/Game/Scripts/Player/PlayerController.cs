@@ -6,13 +6,19 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField, BoxGroup("[Animator]")] private Animator animator;
+    [SerializeField, BoxGroup("[Animator]")] private Animator witchAnimator, premsesAnimator, flatWomanAnimator;
     [SerializeField, BoxGroup("[Settings]")] private PlayerControllerSettings playerSettings;
     [SerializeField, BoxGroup("[Settings]")] private FamiliarController familiarController;
     [SerializeField, BoxGroup("[FXs]")] private ParticleSystem goodGatePassFX, badGatePassFX, goodItemTakeFX, badItemTakeFX;
     [SerializeField, BoxGroup("[Outfits]")] private Transform defaultOutfit;
     [SerializeField, BoxGroup("[Outfits]")] private Transform[] goodOutfitArray = new Transform[3], badOutfitArray = new Transform[3];
 
+    private List<Animator> animatorList;
+
+    private void Awake()
+    {
+        animatorList = new List<Animator>() { witchAnimator, premsesAnimator, flatWomanAnimator };
+    }
     #region Movement
     [SerializeField, BoxGroup("[Move]")] private Transform slideMovementRoot, leftLimit, rightLimit;
 
@@ -215,49 +221,71 @@ public class PlayerController : MonoBehaviour
     [Button]
     public void StartIdle()
     {
-        animator.SetTrigger(StringData.IDLE);
+        foreach (Animator animator in animatorList)
+        {
+           if(animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
+        }
         SetCharacterSpeed(0f);
     }
     [Button]
     public void StartRun()
     {
-        animator.SetTrigger(StringData.RUNNING);
+        foreach (Animator animator in animatorList)
+        {
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.RUNNING);
+        }
         SetCharacterSpeed(5f);
     }
     [Button]
     public void StartSpin()
     {
-        animator.SetTrigger(StringData.SPIN);
+        foreach (Animator animator in animatorList)
+        {
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.SPIN);
+        }
+
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { StartRun(); }, 1f));
     }
     [Button]
     public void StartFall()
     {
-        animator.SetTrigger(StringData.FALL);
+        foreach (Animator animator in animatorList)
+        {
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.FALL);
+        }
     }
     [Button]
     public void StartPunch()
     {
-        animator.SetTrigger(StringData.PUNCH);
+        foreach (Animator animator in animatorList)
+        {
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.PUNCH);
+        }
     }
     [Button]
     public void StartFail()
     {
         SetCharacterSpeed(0f);
-        animator.SetTrigger(StringData.IDLE);
+        foreach (Animator animator in animatorList)
+        {
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
+        }
 
-        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { animator.SetTrigger(StringData.FAIL); }, 2f));
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { witchAnimator.SetTrigger(StringData.FAIL); }, 2f));
     }
     [Button]
     public void StartWin()
     {
         SetCharacterSpeed(0f);
-        animator.SetTrigger(StringData.IDLE);
+        foreach (Animator animator in animatorList)
+        {
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
+        }
 
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
         {
-            animator.speed = 0.5f;
-            animator.SetTrigger(StringData.SPIN);
+            witchAnimator.speed = 0.5f;
+            witchAnimator.SetTrigger(StringData.SPIN);
         }, 2f));
 
 
