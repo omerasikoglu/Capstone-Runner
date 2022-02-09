@@ -48,13 +48,16 @@ public class PlayerController : MonoBehaviour
             case GameState.Running:
                 StartRun();
                 break;
-            case GameState.Kicking:
-                StartKick();
-                break;
             case GameState.Flying:
                 break;
             case GameState.Win:
                 StartWin();
+                break;
+            case GameState.Punch:
+                StartPunch();
+                break;
+            case GameState.Fail:
+                StartFail();
                 break;
             default:
                 break;
@@ -130,7 +133,6 @@ public class PlayerController : MonoBehaviour
         {
             //first move
             canMove = !canMove;
-            UIManager.Instance.ChangeTapToStartUI();
         }
         if (canMove)
         {
@@ -141,6 +143,14 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    private void SetCharacterSpeed(float speed)
+    {
+        if (playerSettings.movementSpeed == speed) return;
+
+        playerSettings.movementSpeed = speed;
+    }
+
+    //public
     public void ChangeOutfit(bool isGoodGateHasBeenPassed)
     {
         currentOutfitPoint += isGoodGateHasBeenPassed ? 1 : -1;
@@ -197,12 +207,10 @@ public class PlayerController : MonoBehaviour
     public void ChangeItemPoint(bool? isGoodItem)
     {
         currentItemPoint += isGoodItem == true ? 1 : -1;
-        StartSpin();
-    }
+        PlayerPrefs.SetInt(StringData.PREF_MONEY, currentItemPoint);
+        //TODO: UI BAR
 
-    private void SetCharacterSpeed(float speed)
-    {
-        playerSettings.movementSpeed = speed;
+        StartSpin();
     }
 
     #region Animations
@@ -234,22 +242,19 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger(StringData.PUNCH);
     }
-
+    [Button]
+    public void StartFail()
+    {
+        SetCharacterSpeed(0f);
+        animator.SetTrigger(StringData.FAIL);
+    }
     [Button]
     public void StartWin()
     {
-        //TODO: Start Win Animation
+        SetCharacterSpeed(0f);
+        animator.SetTrigger(StringData.SPIN);
     }
-    [Button]
-    public void StartLose()
-    {
-        //TODO: Start Lose Animation
-    }
-    [Button]
-    public void StartKick()
-    {
-        //TODO: Start Kick Animation
-    }
+
     #endregion
 
     #region Test

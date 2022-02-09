@@ -1,8 +1,8 @@
 public struct StringData
 {
     //PlayerPrefs
-    public const string MONEY = "money";
-    public const string LEVEL = "level";
+    public const string PREF_MONEY = "money";
+    public const string PREF_LEVEL = "level";
 
     //Input
     public const string HORIZONTAL = "Horizontal";
@@ -30,9 +30,11 @@ public struct StringData
     //Animator
     public const string PUNCH = "punch";
     public const string FALL = "fall";
+    public const string FAIL = "fail";
     public const string RUNNING = "running";
     public const string IDLE = "idle";
     public const string SPIN = "spin";
+    public const string WIN = "win";
 
 
     //
