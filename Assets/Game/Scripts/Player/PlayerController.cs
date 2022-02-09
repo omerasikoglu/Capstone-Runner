@@ -136,9 +136,7 @@ public class PlayerController : MonoBehaviour
         }
         if (canMove)
         {
-            //TODO: RUN
             HandleMovement();
-
         }
     }
     #endregion
@@ -207,9 +205,11 @@ public class PlayerController : MonoBehaviour
     public void ChangeItemPoint(bool? isGoodItem)
     {
         currentItemPoint += isGoodItem == true ? 100 : -100;
+        currentItemPoint = Mathf.Clamp(currentItemPoint, 0, 5000);
         PlayerPrefs.SetInt(StringData.PREF_MONEY, currentItemPoint);
         UIManager.Instance.UpdateMoney();
 
+        //TODO: Duruma göre spin atması
         StartSpin();
     }
 

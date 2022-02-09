@@ -48,25 +48,13 @@ public class UIManager : MonoBehaviour
 
         switch (newUI)
         {
-            case GameUI.None:
-                break;
-            case GameUI.Loading:
-                ChangeLoadingUI();
-                break;
-            case GameUI.TapToPlay:
-                ChangeTapToPlayUI();
-                break;
-            case GameUI.InGame:
-                ChangeInGameUI();
-                break;
-            case GameUI.Win:
-                ChangeYouWinUI();
-                break;
-            case GameUI.Fail:
-                ChangeGameOverUI();
-                break;
-            default:
-                break;
+            case GameUI.None: break;
+            case (GameUI)1: ChangeLoadingUI(); break;
+            case (GameUI)2: ChangeTapToPlayUI(); break;
+            case (GameUI)3: ChangeInGameUI(); break;
+            case (GameUI)4: ChangeYouWinUI(); break;
+            case (GameUI)5: ChangeGameOverUI(); break;
+            default: break;
         }
 
     }

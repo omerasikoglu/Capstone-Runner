@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.SwitchUI(GameUI.Fail);
     }
 
-    //TODO: Adjust
+    //TODO: Adjust Bottom 2
     private void HandlePunch()
     {
         cameraHandler.SwitchCam(Cam.PunchCam);
