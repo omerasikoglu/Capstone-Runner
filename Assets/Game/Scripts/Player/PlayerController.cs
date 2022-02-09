@@ -195,13 +195,13 @@ public class PlayerController : MonoBehaviour
         {
             goodGatePassFX.Play();
             familiarController.AddNewFamiliar();
-            StartSpin();
         }
         else
         {
             badGatePassFX.Play();
             familiarController.RemoveOldFamiliar();
         }
+        StartSpin();
     }
     public void ChangeItemPoint(bool? isGoodItem)
     {
@@ -209,9 +209,6 @@ public class PlayerController : MonoBehaviour
         currentItemPoint = Mathf.Clamp(currentItemPoint, 0, 5000);
         PlayerPrefs.SetInt(StringData.PREF_MONEY, currentItemPoint);
         UIManager.Instance.UpdateMoney();
-
-        //TODO: Duruma göre spin atması
-        StartSpin();
     }
 
     #region Animations
