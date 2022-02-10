@@ -14,9 +14,20 @@ public class SceneLoadManager : MonoBehaviour
 
     private bool isL1Loaded = false, isL2Loaded = false, isL3Loaded = false;
 
-    private void Awake()
+    private void Awake() => Instance ??= this;
+
+    [Button]
+    public void LoadNextLevel()
     {
-        Instance ??= this;
+        //unload this
+        int currentLevel = PlayerPrefs.GetInt(StringData.PREF_LEVEL);
+        LoadUnloadScene(GetCurrentLevel(currentLevel));
+
+        //load next
+        LoadUnloadScene(GetCurrentLevel(currentLevel + 1));
+        PlayerPrefs.SetInt(StringData.PREF_LEVEL, currentLevel + 1);
+
+
     }
     public void LoadUnloadScene(Level newLevel)
     {
@@ -24,6 +35,29 @@ public class SceneLoadManager : MonoBehaviour
         else LoadScene(newLevel);
     }
 
+
+    private void LoadScene(Level newLevel)
+    {
+        SetLevelBools(newLevel);
+        SceneManager.LoadSceneAsync(GetSceneName(newLevel), LoadSceneMode.Additive);
+    }
+    private void UnloadScene(Level newLevel)
+    {
+        SetLevelBools(newLevel);
+        SceneManager.UnloadSceneAsync(GetSceneName(newLevel));
+    }
+
+
+    private Level GetCurrentLevel(int levelNumber)
+    {
+        return levelNumber switch
+        {
+            1 => Level.Level1,
+            2 => Level.Level2,
+            3 => Level.Level3,
+            _ => Level.Level1
+        };
+    }
     private bool CheckIsLoaded(Level newLevel)
     {
         return newLevel switch
@@ -33,18 +67,6 @@ public class SceneLoadManager : MonoBehaviour
             (Level)3 => isL3Loaded,
             _ => false
         };
-    }
-
-    private void LoadScene(Level newLevel)
-    {
-        SetLevelBools(newLevel);
-        SceneManager.LoadSceneAsync(GetSceneNameFromEnum(newLevel), LoadSceneMode.Additive);
-    }
-
-    private void UnloadScene(Level newLevel)
-    {
-        SetLevelBools(newLevel);
-        SceneManager.UnloadSceneAsync(GetSceneNameFromEnum(newLevel));
     }
     private void SetLevelBools(Level newLevel)
     {
@@ -56,7 +78,7 @@ public class SceneLoadManager : MonoBehaviour
             default: break;
         }
     }
-    private string GetSceneNameFromEnum(Level whichLevel)
+    private string GetSceneName(Level whichLevel)
     {
         return whichLevel switch
         {
