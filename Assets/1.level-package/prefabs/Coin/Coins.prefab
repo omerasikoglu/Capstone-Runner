@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2381389521772280928}
   - component: {fileID: 497808763441514666}
   - component: {fileID: 7060064340907174875}
-  - component: {fileID: 7001883446184336302}
+  - component: {fileID: 6122361362968046020}
   m_Layer: 0
   m_Name: Coins
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2155093501013764479}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 1.7, y: 0.5, z: 122.1}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 50.000015, y: 50.000015, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   audioClip: {fileID: 0}
---- !u!65 &7001883446184336302
+--- !u!65 &6122361362968046020
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -266,6 +266,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfa798266c7545f419374d418d97f314, type: 3}
+--- !u!1 &76526563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4962874098323860357, guid: dc51ea5925d9f304db2f81864d9eda77, type: 3}
+  m_PrefabInstance: {fileID: 2793738256687670258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &76526564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76526563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c032acfab0d133747877ac8a76cacc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 0}
+  isPrincessGate: 0
+--- !u!65 &76526565
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76526563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.040965125, y: 0.05550304, z: 0.0009510566}
+  m_Center: {x: 0.020479511, y: 0, z: 0.0000000014406396}
 --- !u!1001 &77831319
 PrefabInstance:
   m_ObjectHideFlags: 0
