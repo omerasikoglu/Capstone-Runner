@@ -3,16 +3,17 @@ using NaughtyAttributes;
 
 public class Item : MonoBehaviour
 {
-    private enum ItemTypes
+    private enum ItemType
     {
         Princess, Witch, Neutral
     }
-    [SerializeField] private ItemTypes itemType;
+    [SerializeField] private ItemType itemType;
     [SerializeField] private AudioClip audioClip;
 
     private bool? isPrincessItem;
     //[SerializeField] private bool isGoodItem;
-    private void Awake() => isPrincessItem = itemType switch { ItemTypes.Princess => true, ItemTypes.Witch => false, ItemTypes.Neutral => null, _ => null };
+    private void Awake() => isPrincessItem = itemType switch 
+    { ItemType.Princess => true, ItemType.Witch => false, ItemType.Neutral => null, _ => null };
 
     private void OnTriggerEnter(Collider other)
     {

@@ -7,12 +7,9 @@ public class ProgressBarUI : MonoBehaviour
 {
     public static ProgressBarUI Instance { get; private set; }
 
-    [SerializeField] private Transform heartOn, heartOff;
-
-
     [SerializeField] private float lerpSpeed = 2f; //yeþil bar dolma hareket hýzý
 
-    private Transform barTransform;
+    [SerializeField]private Transform barTransform; //MAX 375
     private float currentProgress = 0f; //yapýlan görev
     private float maxProgress = 3f; //toplam görev
 
@@ -21,7 +18,6 @@ public class ProgressBarUI : MonoBehaviour
     {
         Instance = this;
 
-        barTransform = transform.Find(StringData.BAR);
         ResetBar();
     }
 
@@ -37,34 +33,19 @@ public class ProgressBarUI : MonoBehaviour
     private void CheckGreenBar()
     {
         //yeþil barýn görev tamamlandýkça yavaþça artmasý
-        barTransform.localScale = new Vector3(Mathf.Lerp(barTransform.localScale.x, UpdateProgressAmountNormalized(), lerpSpeed * Time.deltaTime), 1f, 1f);
-        if (currentProgress >= maxProgress)
-        {
-            heartOn.gameObject.SetActive(true);
-            heartOff.gameObject.SetActive(false);
-        }
+        barTransform.localScale = new Vector3(
+            Mathf.Lerp(barTransform.localScale.x, UpdateProgressAmountNormalized(), lerpSpeed * Time.deltaTime), 1f, 1f);
     }
 
     [Button]
     public void OneTaskDone()
     {
         currentProgress += 1;
-        if (currentProgress == maxProgress)
-        {
-            //tüm görevler yapýldýysa
-        }
 
         UpdateProgressAmountNormalized();
     }
-    public int GetScore()
-    {
-        return (int)currentProgress;
-    }
     public void ResetBar()
     {
-
-        heartOn.gameObject.SetActive(false);
-        heartOff.gameObject.SetActive(true);
         currentProgress = 0;
 
         UpdateProgressAmountNormalized();

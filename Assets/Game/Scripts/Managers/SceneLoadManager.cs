@@ -13,12 +13,15 @@ public class SceneLoadManager : MonoBehaviour
     public static SceneLoadManager Instance { get; private set; }
 
     private bool isL1Loaded = false, isL2Loaded = false, isL3Loaded = false;
+    public bool autoLoad = false;
 
     private void Awake() => Instance ??= this;
 
     [Button]
     public void LoadNextLevel()
     {
+        if (!autoLoad) return;
+
         //unload this
         int currentLevel = PlayerPrefs.GetInt(StringData.PREF_LEVEL);
         LoadUnloadScene(GetCurrentLevel(currentLevel));

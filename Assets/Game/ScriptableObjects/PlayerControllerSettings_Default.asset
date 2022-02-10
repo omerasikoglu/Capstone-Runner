@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6e9a508e08ba947bbc5ef6ab7c7c4f, type: 3}
   m_Name: PlayerControllerSettings_Default
   m_EditorClassIdentifier: 
-  movementSpeed: 0
+  movementSpeed: 5
   jumpHeightY: 0
   maxSpeed: 5
   slideMovementSensitivity: 0.01

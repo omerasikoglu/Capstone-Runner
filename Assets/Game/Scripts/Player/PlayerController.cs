@@ -9,16 +9,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField, BoxGroup("[Animator]")] private Animator witchAnimator, premsesAnimator, flatWomanAnimator;
     [SerializeField, BoxGroup("[Settings]")] private PlayerControllerSettings playerSettings;
     [SerializeField, BoxGroup("[Settings]")] private FamiliarController familiarController;
-    [SerializeField, BoxGroup("[FXs]")] private ParticleSystem goodGatePassFX, badGatePassFX, goodItemTakeFX, badItemTakeFX;
-    [SerializeField, BoxGroup("[Outfits]")] private Transform defaultOutfit;
+    [SerializeField, BoxGroup("[Settings]")] private List<BoxCollider> colliderList;
+    [SerializeField, BoxGroup("[FXs]")] private ParticleSystem princessGatePassFX, witchGatePassFX, princessItemTakeFX, witchItemTakeFX, moneyTakeFX;
     [SerializeField, BoxGroup("[Outfits]")] private Transform[] goodOutfitArray = new Transform[3], badOutfitArray = new Transform[3];
+
 
     private List<Animator> animatorList;
     private bool? areYouPrincess = null;
+    private int currentPoint => PlayerPrefs.GetInt(StringData.PREF_POINT);
+
+    private int currentMoney = 0, currentOutfitPoint = 0;
+    private bool? areUGood = true;
+
     private void Awake()
     {
         animatorList = new List<Animator>() { witchAnimator, premsesAnimator, flatWomanAnimator };
-
+        Debug.Log("currentPoint = " + currentPoint);
         UpdateAreYouPrincess();
     }
 
@@ -45,8 +51,7 @@ public class PlayerController : MonoBehaviour
     private bool canMove = true;
     #endregion
 
-    private int currentMoney = 0, currentOutfitPoint = 0, currentPoint = 0;
-    private bool? areUGood = true;
+
 
     private void Start()
     {
@@ -94,7 +99,6 @@ public class PlayerController : MonoBehaviour
 
     private void ResetOutfits()
     {
-        defaultOutfit.gameObject.SetActive(true);
 
         foreach (Transform outfit in goodOutfitArray)
         {
@@ -172,9 +176,11 @@ public class PlayerController : MonoBehaviour
     //public
     public void ChangeOutfit(bool isPrincessGate)
     {
+        SetColliderDisableOneSec(); //aynı anda 2 kapıdan geçerse diye
+
         currentOutfitPoint += isPrincessGate ? 1 : -1;
 
-        //kıyafet puanına göre karakterin kıyafetini değiştirme
+        //kıyafet değiştirme
         switch (currentOutfitPoint)
         {
             case -3:
@@ -196,6 +202,11 @@ public class PlayerController : MonoBehaviour
                 badOutfitArray[1].gameObject.SetActive(false);
                 break;
             case 0:
+                witchAnimator.gameObject.SetActive(false);
+                premsesAnimator.gameObject.SetActive(false);
+                flatWomanAnimator.gameObject.SetActive(true);
+                UpdateAreYouPrincess();
+
                 badOutfitArray[0].gameObject.SetActive(false);
                 goodOutfitArray[0].gameObject.SetActive(false);
                 break;
@@ -220,28 +231,33 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
+
         if (isPrincessGate)
         {
-            goodGatePassFX.Play();
+            princessGatePassFX.Play();
             familiarController.AddNewFamiliar();
         }
         else
         {
-            badGatePassFX.Play();
+            witchGatePassFX.Play();
             familiarController.RemoveOldFamiliar();
         }
         StartSpin();
     }
     public void ChangeItemPoint(bool? isPrincessItem)
     {
-        currentMoney += isPrincessItem == true ? 100 : -100;
         if (isPrincessItem == true)
         {
-
+            int currentPoint = PlayerPrefs.GetInt(StringData.PREF_POINT);
+            PlayerPrefs.SetInt(StringData.PREF_POINT, currentPoint);
+            //TODO: Update UI
+            princessItemTakeFX.Play();
         }
         else if (isPrincessItem == false)
         {
 
+            //TODO: Update UI
+            witchItemTakeFX.Play();
         }
         else if (isPrincessItem == null)
         {
@@ -249,12 +265,29 @@ public class PlayerController : MonoBehaviour
             currentMoney += 100;
             PlayerPrefs.SetInt(StringData.PREF_MONEY, currentMoney);
             UIManager.Instance.UpdateMoney();
-            //TODO: FX
+
+            moneyTakeFX.Play();
         }
 
 
 
     }
+
+    private void SetColliderDisableOneSec()
+    {
+        foreach (BoxCollider collider in colliderList)
+        {
+            collider.enabled = false;
+        }
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
+        {
+            foreach (BoxCollider collider in colliderList)
+            {
+                collider.enabled = true;
+            }
+        }, 1f));
+    }
+
 
     #region Animations
     [Button]

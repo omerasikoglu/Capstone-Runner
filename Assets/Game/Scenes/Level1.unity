@@ -323,6 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: add7c9ad717475448b5b16fe86482fde, type: 3}
   isPrincessGate: 0
+  kankaKapi: {fileID: 7187169493604356373}
 --- !u!65 &277812510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -618,6 +619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: add7c9ad717475448b5b16fe86482fde, type: 3}
   isPrincessGate: 0
+  kankaKapi: {fileID: 0}
 --- !u!1 &538002220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,10 +1100,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 394209369921250804}
-  - {fileID: 394209369079957517}
   - {fileID: 394209369249606656}
   m_Father: {fileID: 939809845}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &724211774
 PrefabInstance:
@@ -1516,6 +1517,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 7563272479976688559}
+  - {fileID: 394209369079957517}
   - {fileID: 1044908470}
   - {fileID: 710445808}
   m_Father: {fileID: 0}
@@ -1554,10 +1557,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7563272481093780569}
-  - {fileID: 7563272479976688559}
   - {fileID: 7563272481251481339}
   m_Father: {fileID: 939809845}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1053280803
 PrefabInstance:
@@ -2819,6 +2821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: add7c9ad717475448b5b16fe86482fde, type: 3}
   isPrincessGate: 0
+  kankaKapi: {fileID: 0}
 --- !u!1001 &1736628595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3716,10 +3719,10 @@ Transform:
   m_GameObject: {fileID: 3986851609765754730}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -1.6, y: 0, z: 110}
-  m_LocalScale: {x: 108.3384, y: 100, z: 100}
+  m_LocalScale: {x: 108.33841, y: 100, z: 100}
   m_Children:
   - {fileID: 2687607352994360396}
-  m_Father: {fileID: 710445808}
+  m_Father: {fileID: 939809845}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!4 &394209369249606656
@@ -3735,7 +3738,7 @@ Transform:
   m_Children:
   - {fileID: 2687607353155536961}
   m_Father: {fileID: 710445808}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!4 &394209369921250804
 Transform:
@@ -5080,8 +5083,8 @@ GameObject:
   - component: {fileID: 394209369079957517}
   - component: {fileID: 8571159266433937248}
   - component: {fileID: 6882464756809455781}
-  - component: {fileID: 277812510}
   - component: {fileID: 277812497}
+  - component: {fileID: 277812510}
   m_Layer: 0
   m_Name: gatewitch (3)
   m_TagString: Untagged
@@ -6117,6 +6120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 00812edcaf16fd24795b6a060cc1ceb2, type: 3}
   isPrincessGate: 1
+  kankaKapi: {fileID: 3986851609765754730}
 --- !u!114 &5938156894236546835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6131,6 +6135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 00812edcaf16fd24795b6a060cc1ceb2, type: 3}
   isPrincessGate: 1
+  kankaKapi: {fileID: 0}
 --- !u!114 &5938156894461871537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6145,6 +6150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 00812edcaf16fd24795b6a060cc1ceb2, type: 3}
   isPrincessGate: 1
+  kankaKapi: {fileID: 0}
 --- !u!1001 &6058956986780625244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6478,11 +6484,11 @@ Transform:
   m_GameObject: {fileID: 7187169493604356373}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 1.6, y: 0, z: 110}
-  m_LocalScale: {x: 108.3384, y: 100, z: 100}
+  m_LocalScale: {x: 108.33841, y: 100, z: 100}
   m_Children:
   - {fileID: 5188805019363728373}
-  m_Father: {fileID: 1044908470}
-  m_RootOrder: 1
+  m_Father: {fileID: 939809845}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!4 &7563272481093780569
 Transform:
@@ -6512,7 +6518,7 @@ Transform:
   m_Children:
   - {fileID: 5188805018088933025}
   m_Father: {fileID: 1044908470}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!4 &8173398204140700678 stripped
 Transform:
