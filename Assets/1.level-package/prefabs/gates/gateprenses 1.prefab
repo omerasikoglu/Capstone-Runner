@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 00812edcaf16fd24795b6a060cc1ceb2, type: 3}
-  isGoodGate: 1
+  isPrincessGate: 0
 --- !u!65 &4307911302855890131
 BoxCollider:
   m_ObjectHideFlags: 0

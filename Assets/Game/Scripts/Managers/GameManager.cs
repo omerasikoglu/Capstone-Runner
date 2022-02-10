@@ -36,31 +36,15 @@ public class GameManager : MonoBehaviour
 
         switch (newState)
         {
-            case GameState.Starting:
-                HandleStarting();
-                break;
-            case GameState.Running:
-                HandleRunning();
-                break;
-            case GameState.Punch:
-                HandlePunch();
-                break;
-            case GameState.Flying:
-                HandleFlying();
-                break;
-            case GameState.Win:
-                HandleWin();
-                break;
-            case GameState.None:
-                break;
-            case GameState.TapToScreen:
-                HandleTapToScreen();
-                break;
-            case GameState.Fail:
-                HandleFail();
-                break;
-            default:
-                break;
+            case GameState.Starting: HandleStarting(); break;
+            case GameState.Running: HandleRunning(); break;
+            case GameState.Punch: HandlePunch(); break;
+            case GameState.Flying: HandleFlying(); break;
+            case GameState.Win: HandleWin(); break;
+            case GameState.None: break;
+            case GameState.TapToScreen: HandleTapToScreen(); break;
+            case GameState.Fail: HandleFail(); break;
+            default: break;
         }
 
         OnStateChanged?.Invoke(newState);
@@ -68,17 +52,23 @@ public class GameManager : MonoBehaviour
 
     private void HandleStarting()
     {
+        //Init
         PlayerPrefs.SetInt(StringData.PREF_MONEY, 0);
         UIManager.Instance.UpdateMoney();
         UIManager.Instance.UpdateLevel();
 
+        PlayerPrefs.SetInt(StringData.PREF_LEVEL, 0);
+        SceneLoadManager.Instance.LoadNextLevel();
+
+        PlayerPrefs.SetInt(StringData.PREF_POINT, 0);
+
         Time.timeScale = 1f;
 
-        //open
+        //Start
         UIManager.Instance.SwitchUI(GameUI.Loading);
         cameraHandler.SwitchCam(Cam.PreRunCam);
 
-        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => {ChangeState(GameState.TapToScreen); }, 2f));
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { ChangeState(GameState.TapToScreen); }, 2f));
 
     }
     private void HandleTapToScreen()
@@ -90,7 +80,7 @@ public class GameManager : MonoBehaviour
         cameraHandler.SwitchCam(Cam.RunningCam);
         UIManager.Instance.SwitchUI(GameUI.InGame);
     }
-   
+
     private void HandleWin()
     {
         cameraHandler.SwitchCam(Cam.FinalPoseCam);

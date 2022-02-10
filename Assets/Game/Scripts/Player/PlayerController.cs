@@ -14,10 +14,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField, BoxGroup("[Outfits]")] private Transform[] goodOutfitArray = new Transform[3], badOutfitArray = new Transform[3];
 
     private List<Animator> animatorList;
-
+    private bool? areYouPrincess = null;
     private void Awake()
     {
         animatorList = new List<Animator>() { witchAnimator, premsesAnimator, flatWomanAnimator };
+
+        UpdateAreYouPrincess();
+    }
+
+    private void UpdateAreYouPrincess()
+    {
+        if (witchAnimator.gameObject.activeSelf)
+        {
+            areYouPrincess = false;
+        }
+        else if (premsesAnimator.gameObject.activeSelf)
+        {
+            areYouPrincess = true;
+        }
+        else areYouPrincess = null;
     }
     #region Movement
     [SerializeField, BoxGroup("[Move]")] private Transform slideMovementRoot, leftLimit, rightLimit;
@@ -30,7 +45,7 @@ public class PlayerController : MonoBehaviour
     private bool canMove = true;
     #endregion
 
-    private int currentItemPoint = 0, currentOutfitPoint = 0;
+    private int currentMoney = 0, currentOutfitPoint = 0, currentPoint = 0;
     private bool? areUGood = true;
 
     private void Start()
@@ -155,9 +170,9 @@ public class PlayerController : MonoBehaviour
     }
 
     //public
-    public void ChangeOutfit(bool isGoodGateHasBeenPassed)
+    public void ChangeOutfit(bool isPrincessGate)
     {
-        currentOutfitPoint += isGoodGateHasBeenPassed ? 1 : -1;
+        currentOutfitPoint += isPrincessGate ? 1 : -1;
 
         //kıyafet puanına göre karakterin kıyafetini değiştirme
         switch (currentOutfitPoint)
@@ -173,6 +188,10 @@ public class PlayerController : MonoBehaviour
                 badOutfitArray[2].gameObject.SetActive(false);
                 break;
             case -1:
+                flatWomanAnimator.gameObject.SetActive(false);
+                witchAnimator.gameObject.SetActive(true);
+                UpdateAreYouPrincess();
+
                 badOutfitArray[0].gameObject.SetActive(true);
                 badOutfitArray[1].gameObject.SetActive(false);
                 break;
@@ -181,6 +200,10 @@ public class PlayerController : MonoBehaviour
                 goodOutfitArray[0].gameObject.SetActive(false);
                 break;
             case 1:
+                flatWomanAnimator.gameObject.SetActive(false);
+                premsesAnimator.gameObject.SetActive(true);
+                UpdateAreYouPrincess();
+
                 goodOutfitArray[0].gameObject.SetActive(true);
                 goodOutfitArray[1].gameObject.SetActive(false);
                 break;
@@ -197,7 +220,7 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
-        if (isGoodGateHasBeenPassed)
+        if (isPrincessGate)
         {
             goodGatePassFX.Play();
             familiarController.AddNewFamiliar();
@@ -209,12 +232,28 @@ public class PlayerController : MonoBehaviour
         }
         StartSpin();
     }
-    public void ChangeItemPoint(bool? isGoodItem)
+    public void ChangeItemPoint(bool? isPrincessItem)
     {
-        currentItemPoint += isGoodItem == true ? 100 : -100;
-        currentItemPoint = Mathf.Clamp(currentItemPoint, 0, 5000);
-        PlayerPrefs.SetInt(StringData.PREF_MONEY, currentItemPoint);
-        UIManager.Instance.UpdateMoney();
+        currentMoney += isPrincessItem == true ? 100 : -100;
+        if (isPrincessItem == true)
+        {
+
+        }
+        else if (isPrincessItem == false)
+        {
+
+        }
+        else if (isPrincessItem == null)
+        {
+            //altın aldıysa
+            currentMoney += 100;
+            PlayerPrefs.SetInt(StringData.PREF_MONEY, currentMoney);
+            UIManager.Instance.UpdateMoney();
+            //TODO: FX
+        }
+
+
+
     }
 
     #region Animations
@@ -223,7 +262,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-           if(animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.IDLE);
         }
         SetCharacterSpeed(0f);
     }
@@ -232,7 +271,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.RUNNING);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.RUNNING);
         }
         SetCharacterSpeed(5f);
     }
@@ -241,7 +280,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.SPIN);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.SPIN);
         }
 
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { StartRun(); }, 1f));
@@ -251,7 +290,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.FALL);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.FALL);
         }
     }
     [Button]
@@ -259,7 +298,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.PUNCH);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.PUNCH);
         }
     }
     [Button]
@@ -268,7 +307,7 @@ public class PlayerController : MonoBehaviour
         SetCharacterSpeed(0f);
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.IDLE);
         }
 
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { witchAnimator.SetTrigger(StringData.FAIL); }, 2f));
@@ -279,7 +318,7 @@ public class PlayerController : MonoBehaviour
         SetCharacterSpeed(0f);
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.IDLE);
         }
 
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
