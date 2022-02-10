@@ -6,7 +6,72 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: Idle
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Character
+    second: {fileID: 2100000, guid: 817290e6e91f2ed4f959803fa0def549, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-BROOM1
+    second: {fileID: 2100000, guid: 038f108fd08e58e4b8a079e07fc4498f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-BROOM2
+    second: {fileID: 2100000, guid: 7b9b96c627b317d45b6cd6b6c81b75ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-CHARACTER
+    second: {fileID: 2100000, guid: 5400476d3c338d8489115c04528200bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-EYEBLACK
+    second: {fileID: 2100000, guid: 4e37226a0c761664bae5d32f854092be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-EYECOLOR
+    second: {fileID: 2100000, guid: 2bd418497efaebc4d878d68fdd00e48b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-EYE_WHITE
+    second: {fileID: 2100000, guid: bcf04c49bc4e8a64a98e382d7f2b5cd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-HAIR
+    second: {fileID: 2100000, guid: c09aa9a1c75461647bfab80cbce63c7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-HAT
+    second: {fileID: 2100000, guid: 3fd455574d680b14a94eb6d83646a06e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-HAT2
+    second: {fileID: 2100000, guid: 4c6f4f04c3be92241bd1868202a5ee4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-HAT3
+    second: {fileID: 2100000, guid: c09e9c95f02bf9c46b369cbf48b20a8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-LIPS
+    second: {fileID: 2100000, guid: 9138b511634c6434a8b50b56595822e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W-SHOE
+    second: {fileID: 2100000, guid: 545f30c30e526ee4e8300e1d750a4605, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -101,7 +166,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
