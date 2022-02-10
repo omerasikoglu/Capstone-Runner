@@ -223,7 +223,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-           if(animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
+           if(animator.gameObject.activeSelf) animator.SetTrigger(StringData.IDLE);
         }
         SetCharacterSpeed(0f);
     }
@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.RUNNING);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.RUNNING);
         }
         SetCharacterSpeed(5f);
     }
@@ -241,7 +241,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.SPIN);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.SPIN);
         }
 
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { StartRun(); }, 1f));
@@ -251,7 +251,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.FALL);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.FALL);
         }
     }
     [Button]
@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.PUNCH);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.PUNCH);
         }
     }
     [Button]
@@ -268,7 +268,7 @@ public class PlayerController : MonoBehaviour
         SetCharacterSpeed(0f);
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.IDLE);
         }
 
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { witchAnimator.SetTrigger(StringData.FAIL); }, 2f));
@@ -279,7 +279,7 @@ public class PlayerController : MonoBehaviour
         SetCharacterSpeed(0f);
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
+            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.IDLE);
         }
 
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
