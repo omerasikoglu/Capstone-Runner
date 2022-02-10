@@ -6,10 +6,8 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 
-public class ProgressBarUI : MonoBehaviour
+public class GateBarUI : MonoBehaviour
 {
-    public static ProgressBarUI Instance { get; private set; }
-
     [SerializeField] private float lerpSpeed = 2f; //yeþil bar dolma hareket hýzý
 
     [SerializeField] private RectTransform barTransform; //MAX 375
@@ -20,11 +18,8 @@ public class ProgressBarUI : MonoBehaviour
     private int currentProgress = 0; //yapýlan görev
     private int maxProgress = 3; //toplam görev
 
-
     private void Awake()
     {
-        Instance = this;
-
         ResetBar();
     }
 
@@ -36,7 +31,10 @@ public class ProgressBarUI : MonoBehaviour
     {
         CheckGreenBar();
     }
-
+    private void HideBar()
+    {
+        canvas.gameObject.SetActive(false);
+    }
     private void CheckGreenBar()
     {
         //yeþil barýn görev tamamlandýkça yavaþça artmasý
@@ -51,7 +49,7 @@ public class ProgressBarUI : MonoBehaviour
 
         SetTargetProgressAmount(currentProgress);
         SetWritings(currentProgress);
-
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { HideBar(); }, 4f));
     }
 
 

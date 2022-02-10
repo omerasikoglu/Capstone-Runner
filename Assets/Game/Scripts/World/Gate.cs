@@ -11,7 +11,7 @@ public class Gate : MonoBehaviour
         PlayerController player = other.GetComponentInParent<PlayerController>();
         if (player != null)
         {
-            player.ChangeOutfit(isPrincessGate);
+            player.GateIsPassed(isPrincessGate);
             SoundManager.Instance.PlaySound(audioClip);
 
             

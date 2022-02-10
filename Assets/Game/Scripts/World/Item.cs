@@ -12,7 +12,7 @@ public class Item : MonoBehaviour
 
     private bool? isPrincessItem;
     //[SerializeField] private bool isGoodItem;
-    private void Awake() => isPrincessItem = itemType switch 
+    private void Awake() => isPrincessItem = itemType switch
     { ItemType.Princess => true, ItemType.Witch => false, ItemType.Neutral => null, _ => null };
 
     private void OnTriggerEnter(Collider other)
@@ -20,8 +20,12 @@ public class Item : MonoBehaviour
         PlayerController player = other.GetComponentInParent<PlayerController>();
         if (player != null)
         {
-            player.ChangeItemPoint(isPrincessItem);
-            SoundManager.Instance.PlaySound(audioClip);
+            player.SomeCollectibleHasTaken(isPrincessItem);
+
+            if (audioClip != null)
+            {
+                SoundManager.Instance.PlaySound(audioClip);
+            }
             Destroy(gameObject);
         }
     }

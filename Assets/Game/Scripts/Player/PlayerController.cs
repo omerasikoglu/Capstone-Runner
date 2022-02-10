@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField, BoxGroup("[Settings]")] private PlayerControllerSettings playerSettings;
     [SerializeField, BoxGroup("[Settings]")] private FamiliarController familiarController;
     [SerializeField, BoxGroup("[Settings]")] private List<BoxCollider> colliderList;
-    [SerializeField, BoxGroup("[FXs]")] private ParticleSystem princessGatePassFX, witchGatePassFX, princessItemTakeFX, witchItemTakeFX, moneyTakeFX;
+    [SerializeField, BoxGroup("[UI]")] private GateBarUI gateBarUI;
+    [SerializeField, BoxGroup("[FXs]")] private ParticleSystem princessGateIsPassedFX, witchGateIsPassedFX, princessItemTakeFX, witchItemTakeFX, moneyTakeFX;
     [SerializeField, BoxGroup("[Outfits]")] private Transform[] goodOutfitArray = new Transform[3], badOutfitArray = new Transform[3];
 
 
@@ -174,7 +175,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //public
-    public void ChangeOutfit(bool isPrincessGate)
+    public void GateIsPassed(bool isPrincessGate)
     {
         SetColliderDisableOneSec(); //aynı anda 2 kapıdan geçerse diye
 
@@ -231,20 +232,21 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
-
+        //TODO dogru familiars
         if (isPrincessGate)
         {
-            princessGatePassFX.Play();
+            princessGateIsPassedFX.Play();
             familiarController.AddNewFamiliar();
         }
         else
         {
-            witchGatePassFX.Play();
+            witchGateIsPassedFX.Play();
             familiarController.RemoveOldFamiliar();
         }
+        gateBarUI.OneTaskDone();
         StartSpin();
     }
-    public void ChangeItemPoint(bool? isPrincessItem)
+    public void SomeCollectibleHasTaken(bool? isPrincessItem)
     {
         if (isPrincessItem == true)
         {
@@ -366,7 +368,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Test
-    [Button] void addGood() { ChangeOutfit(true); }
-    [Button] void addBad() { ChangeOutfit(false); }
+    [Button] void addGood() { GateIsPassed(true); }
+    [Button] void addBad() { GateIsPassed(false); }
     #endregion
 }
