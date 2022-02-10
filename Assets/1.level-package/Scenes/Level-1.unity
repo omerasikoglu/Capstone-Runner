@@ -6324,6 +6324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Book of Spell (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4275419215072139945, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
 --- !u!1001 &1483909524

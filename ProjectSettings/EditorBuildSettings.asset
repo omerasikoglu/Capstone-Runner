@@ -15,24 +15,21 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/MerveScene.unity
     guid: 02571a586a6d421448f831ca92c3d154
   - enabled: 1
+    path: Assets/1.level-package/Scenes/Level-1.unity
+    guid: 17942e90529d22544a3ed32e30e2829a
+  - enabled: 1
+    path: Assets/1.level-package/Scenes/Level-2.unity
+    guid: 601631c7603375d4c9dd157d776bb19f
+  - enabled: 1
+    path: Assets/1.level-package/Scenes/Level_3.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
     path: Assets/Game/Scenes/OmerScene.unity
     guid: fcec051c5c95f35499c7b7d7bad730fb
   - enabled: 0
-    path: Assets/Game/Scenes/Level_0.unity
-    guid: a638e237dce6a9646a2711c81961fcd4
-  - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/1.level-package/Scenes/Level3.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/1.level-package/Scenes/Level2.unity
-    guid: 601631c7603375d4c9dd157d776bb19f
-  - enabled: 1
-    path: Assets/1.level-package/Scenes/Level1.unity
-    guid: 17942e90529d22544a3ed32e30e2829a
   m_configObjects: {}
