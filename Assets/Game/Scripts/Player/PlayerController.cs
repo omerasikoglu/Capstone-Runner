@@ -11,22 +11,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField, BoxGroup("[Settings]")] private FamiliarController familiarController;
     [SerializeField, BoxGroup("[Settings]")] private List<BoxCollider> colliderList;
     [SerializeField, BoxGroup("[UI]")] private GateBarUI gateBarUI;
-    [SerializeField, BoxGroup("[FXs]")] private ParticleSystem princessGateIsPassedFX, witchGateIsPassedFX, princessItemTakeFX, witchItemTakeFX, moneyTakeFX;
+    [SerializeField, BoxGroup("[FXs]")] private ParticleSystem trueGateIsPassedFX, wrongGateIsPassedFX, princessItemTakeFX, witchItemTakeFX, moneyTakeFX;
     [SerializeField, BoxGroup("[Outfits]")] private Transform[] goodOutfitArray = new Transform[3], badOutfitArray = new Transform[3];
 
 
     private List<Animator> animatorList;
     private bool? areYouPrincess = null;
-    private int currentPoint => PlayerPrefs.GetInt(StringData.PREF_POINT);
 
-    private int currentMoney = 0, currentOutfitPoint = 0;
-    private bool? areUGood = true;
+    private int currentMoney = 0, currentOutfitPoint = 0, currentPoint = 0;
 
     private void Awake()
     {
+        //Init
         animatorList = new List<Animator>() { witchAnimator, premsesAnimator, flatWomanAnimator };
-        Debug.Log("currentPoint = " + currentPoint);
+
         UpdateAreYouPrincess();
+    }
+    private void Start()
+    {
+        GameManager.OnStateChanged += GameManager_OnStateChanged;
+        ResetOutfits();
     }
 
     private void UpdateAreYouPrincess()
@@ -54,11 +58,6 @@ public class PlayerController : MonoBehaviour
 
 
 
-    private void Start()
-    {
-        GameManager.OnStateChanged += GameManager_OnStateChanged;
-        ResetOutfits();
-    }
 
     private void GameManager_OnStateChanged(GameState obj)
     {
@@ -179,9 +178,47 @@ public class PlayerController : MonoBehaviour
     {
         SetColliderDisableOneSec(); //aynı anda 2 kapıdan geçerse diye
 
+        ChangeFamiliar(isPrincessGate);
+        ChangeOutfit(isPrincessGate);
+        StartSpin();
+    }
+    private void ChangeFamiliar(bool isPrincessGate)
+    {
+        if (isPrincessGate)
+        {
+            if (areYouPrincess == true || areYouPrincess == null)
+            {
+                gateBarUI.OneTaskDone(true);
+                trueGateIsPassedFX.Play();
+                familiarController.AddNewButterfly();
+            }
+            else
+            {
+                gateBarUI.OneTaskDone(false);
+                wrongGateIsPassedFX.Play();
+                familiarController.RemoveOldFamiliar();
+            }
+        }
+        else if (!isPrincessGate)
+        {
+            if (areYouPrincess == false || areYouPrincess == null)
+            {
+                gateBarUI.OneTaskDone(true);
+                trueGateIsPassedFX.Play();
+                familiarController.AddNewBat();
+            }
+            else
+            {
+                gateBarUI.OneTaskDone(false);
+                wrongGateIsPassedFX.Play();
+                familiarController.RemoveOldFamiliar();
+            }
+        }
+    }
+    private void ChangeOutfit(bool isPrincessGate)
+    {
         currentOutfitPoint += isPrincessGate ? 1 : -1;
 
-        //kıyafet değiştirme
         switch (currentOutfitPoint)
         {
             case -3:
@@ -232,45 +269,41 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
-        //TODO dogru familiars
-        if (isPrincessGate)
-        {
-            princessGateIsPassedFX.Play();
-            familiarController.AddNewFamiliar();
-        }
-        else
-        {
-            witchGateIsPassedFX.Play();
-            familiarController.RemoveOldFamiliar();
-        }
-        gateBarUI.OneTaskDone();
-        StartSpin();
     }
+
     public void SomeCollectibleHasTaken(bool? isPrincessItem)
     {
         if (isPrincessItem == true)
         {
-            int currentPoint = PlayerPrefs.GetInt(StringData.PREF_POINT);
-            PlayerPrefs.SetInt(StringData.PREF_POINT, currentPoint);
+            if (areYouPrincess == null) return;
+
+            currentPoint += areYouPrincess == true ? 1 : -1;
+            currentPoint = Mathf.Clamp(currentPoint, 0, 8000);
+
             //TODO: Update UI
             princessItemTakeFX.Play();
         }
         else if (isPrincessItem == false)
         {
+            if (areYouPrincess == null) return;
+
+            currentPoint += areYouPrincess == false ? 1 : -1;
+            currentPoint = Mathf.Clamp(currentPoint, 0, 8000);
 
             //TODO: Update UI
             witchItemTakeFX.Play();
         }
+
         else if (isPrincessItem == null)
         {
             //altın aldıysa
-            currentMoney += 100;
+            currentMoney += 10;
             PlayerPrefs.SetInt(StringData.PREF_MONEY, currentMoney);
             UIManager.Instance.UpdateMoney();
 
             moneyTakeFX.Play();
         }
-
+        PlayerPrefs.SetInt(StringData.PREF_POINT, currentPoint);
 
 
     }
@@ -297,7 +330,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.IDLE);
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
         }
         SetCharacterSpeed(0f);
     }
@@ -306,7 +339,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.RUNNING);
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.RUNNING);
         }
         SetCharacterSpeed(5f);
     }
@@ -315,17 +348,25 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.SPIN);
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.SPIN);
         }
 
-        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { StartRun(); }, 1f));
+        if (areYouPrincess == null)
+        {
+            //düz kadının spin animasyonu yok o yüzden
+            StartRun();
+        }
+        else
+        {
+            StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { StartRun(); }, 1f));
+        }
     }
     [Button]
     public void StartFall()
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.FALL);
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.FALL);
         }
     }
     [Button]
@@ -333,7 +374,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.PUNCH);
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.PUNCH);
         }
     }
     [Button]
@@ -342,10 +383,16 @@ public class PlayerController : MonoBehaviour
         SetCharacterSpeed(0f);
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.IDLE);
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
         }
 
-        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { witchAnimator.SetTrigger(StringData.FAIL); }, 2f));
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
+        {
+            foreach (Animator animator in animatorList)
+            {
+                if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.FAIL);
+            };
+        }, 2f));
     }
     [Button]
     public void StartWin()
@@ -353,13 +400,20 @@ public class PlayerController : MonoBehaviour
         SetCharacterSpeed(0f);
         foreach (Animator animator in animatorList)
         {
-            if (animator.gameObject.activeSelf) animator.SetTrigger(StringData.IDLE);
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
         }
 
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
         {
-            witchAnimator.speed = 0.5f;
-            witchAnimator.SetTrigger(StringData.SPIN);
+            foreach (Animator animator in animatorList)
+            {
+                if (animator.gameObject.activeInHierarchy)
+                {
+                    animator.speed = 0.5f;
+                    animator.SetTrigger(StringData.SPIN);
+                }
+
+            }
         }, 2f));
 
 

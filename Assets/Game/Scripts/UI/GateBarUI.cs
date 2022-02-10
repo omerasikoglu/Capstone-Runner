@@ -41,17 +41,23 @@ public class GateBarUI : MonoBehaviour
         barTransform.sizeDelta = new Vector2(
             Mathf.Lerp(barTransform.sizeDelta.x, GetTargetProgressAmount(), lerpSpeed * Time.deltaTime), 44f);
     }
-    [Button]
-    public void OneTaskDone()
+    public void OneTaskDone(bool isIncreased)
     {
-        currentProgress += 1;
-        if (currentProgress > maxProgress) currentProgress = 0;
+        if (isIncreased)
+        {
+            currentProgress += 1;
+            //if (currentProgress > maxProgress) currentProgress = 0;
+        }
+        else
+        {
+            currentProgress -= 1;
+        }
+        currentProgress = Mathf.Clamp(currentProgress, 0, 3);
 
         SetTargetProgressAmount(currentProgress);
         SetWritings(currentProgress);
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { HideBar(); }, 4f));
     }
-
 
     public void ResetBar()
     {

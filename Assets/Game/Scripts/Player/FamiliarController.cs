@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public class FamiliarController : MonoBehaviour
 {
-    [SerializeField, BoxGroup("[Prefab]")] private Transform familiar;
-    
+    [SerializeField, BoxGroup("[Prefab]")] private Transform butterfly, bat;
+
     [SerializeField, BoxGroup("[FamiliarSettings]")] private float maxY = 1f;
     [SerializeField, BoxGroup("[FamiliarSettings]")] private float selfRotateDegree = 25f;
 
@@ -41,9 +41,16 @@ public class FamiliarController : MonoBehaviour
     }
 
     [Button]
-    public void AddNewFamiliar()
+    public void AddNewButterfly()
     {
-        Transform clone = Instantiate(familiar, transform.localPosition, Quaternion.identity, transform);
+        Transform clone = Instantiate(butterfly, transform.localPosition, Quaternion.identity, transform);
+        familiarList.Add(clone);
+        familiarDic.Add(familiarList.Count, clone.gameObject);
+        UpdateFamiliarPositions();
+    } [Button]
+    public void AddNewBat()
+    {
+        Transform clone = Instantiate(bat, transform.localPosition, Quaternion.identity, transform);
         familiarList.Add(clone);
         familiarDic.Add(familiarList.Count, clone.gameObject);
         UpdateFamiliarPositions();

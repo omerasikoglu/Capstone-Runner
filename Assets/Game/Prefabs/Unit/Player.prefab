@@ -4801,7 +4801,7 @@ GameObject:
   - component: {fileID: 1372078044843913900}
   - component: {fileID: 1371415055218388646}
   m_Layer: 0
-  m_Name: Witch
+  m_Name: fx-WrongGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14573,7 +14573,7 @@ GameObject:
   - component: {fileID: 6577020286202722970}
   - component: {fileID: 6577020286202701762}
   m_Layer: 0
-  m_Name: Princess
+  m_Name: fx-TrueGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24749,7 +24749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9d764bc3e6e774cbd2d2dac2cbcd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  familiar: {fileID: 8421710515391749168, guid: ed14a25bb7aeb5e4bbe3b9c1a02e6908, type: 3}
+  butterfly: {fileID: 8421710515391749168, guid: ed14a25bb7aeb5e4bbe3b9c1a02e6908, type: 3}
+  bat: {fileID: 6894310374659380213, guid: c7d4a75d6b472f24f954fd47b0984872, type: 3}
   maxY: 1
   selfRotateDegree: 25
 --- !u!1 &6979896074818396088
@@ -24987,8 +24988,8 @@ MonoBehaviour:
   - {fileID: 6979896075891495157}
   - {fileID: 6979896075695607617}
   gateBarUI: {fileID: 3599792698253473747}
-  princessGateIsPassedFX: {fileID: 6577020286202722970}
-  witchGateIsPassedFX: {fileID: 1372078044843913900}
+  trueGateIsPassedFX: {fileID: 6577020286202722970}
+  wrongGateIsPassedFX: {fileID: 1372078044843913900}
   princessItemTakeFX: {fileID: 6577020286202722970}
   witchItemTakeFX: {fileID: 1372078044843913900}
   moneyTakeFX: {fileID: 6577020286202722970}

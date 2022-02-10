@@ -24,7 +24,9 @@ public class SceneLoadManager : MonoBehaviour
 
         //unload this
         int currentLevel = PlayerPrefs.GetInt(StringData.PREF_LEVEL);
-        LoadUnloadScene(GetCurrentLevel(currentLevel));
+        if (currentLevel == 0) { }
+        else LoadUnloadScene(GetCurrentLevel(currentLevel));
+
 
         //load next
         LoadUnloadScene(GetCurrentLevel(currentLevel + 1));
