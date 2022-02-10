@@ -49,6 +49,10 @@ public struct StringData
     public const string GROUND = "Ground";
 
     //SceneManagement
+    public const string LEVEL1 = "Level1";
+    public const string LEVEL2 = "Level2";
+    public const string LEVEL3 = "Level3";
+
     public const string CURRENTLEVEL = "currentLevel";
 
 }

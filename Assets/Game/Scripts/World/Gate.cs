@@ -16,6 +16,7 @@ public class Gate : MonoBehaviour
             Debug.Log("isGoodGate = " + isGoodGate);
             player.ChangeOutfit(isGoodGate);
             SoundManager.Instance.PlaySound(audioClip);
+            //TODO: KAFANIN UZERINDEKÝ BAR ARTCAK YAZI CIKCAK
         }
 
     }
