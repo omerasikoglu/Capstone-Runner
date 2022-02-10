@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6705078508945202681}
   - component: {fileID: 7683953459276010076}
   - component: {fileID: 5568161887844509334}
+  - component: {fileID: 682693944361513301}
+  - component: {fileID: 2108167643597991149}
   m_Layer: 0
   m_Name: gatewitch (3)
   m_TagString: Untagged
@@ -83,6 +85,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &682693944361513301
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216913399733323587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.040965125, y: 0.05550304, z: 0.0009510566}
+  m_Center: {x: 0.020479511, y: 0, z: 0.0000000014406396}
+--- !u!114 &2108167643597991149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216913399733323587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c032acfab0d133747877ac8a76cacc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 0}
+  isPrincessGate: 0
 --- !u!1 &9077370031006066759
 GameObject:
   m_ObjectHideFlags: 0
