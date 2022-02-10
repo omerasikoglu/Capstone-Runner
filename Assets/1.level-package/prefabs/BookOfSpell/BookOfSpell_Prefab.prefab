@@ -1,0 +1,347 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1017320294569741592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4982321848453043332}
+  m_Layer: 0
+  m_Name: BookOfSpell_Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4982321848453043332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017320294569741592}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7783923916452638797}
+  - {fileID: 7488782790979274782}
+  - {fileID: 8135073851057310721}
+  - {fileID: 3475557375929704269}
+  - {fileID: 7692987647145717172}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &10465940910514014
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4982321848453043332}
+    m_Modifications:
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275419215072139945, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_Name
+      value: Book of Spell (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+--- !u!4 &3475557375929704269 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+  m_PrefabInstance: {fileID: 10465940910514014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4682355083078683666
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4982321848453043332}
+    m_Modifications:
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275419215072139945, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_Name
+      value: Book of Spell (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+--- !u!4 &8135073851057310721 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+  m_PrefabInstance: {fileID: 4682355083078683666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6337417855101929485
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4982321848453043332}
+    m_Modifications:
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275419215072139945, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_Name
+      value: Book of Spell (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+--- !u!4 &7488782790979274782 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+  m_PrefabInstance: {fileID: 6337417855101929485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6547244515288673703
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4982321848453043332}
+    m_Modifications:
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275419215072139945, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_Name
+      value: Book of Spell (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+--- !u!4 &7692987647145717172 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+  m_PrefabInstance: {fileID: 6547244515288673703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6636206044322394206
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4982321848453043332}
+    m_Modifications:
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275419215072139945, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+      propertyPath: m_Name
+      value: Book of Spell
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+--- !u!4 &7783923916452638797 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3467357966644101139, guid: b5216bc97ac46fc41841d88f62817aeb, type: 3}
+  m_PrefabInstance: {fileID: 6636206044322394206}
+  m_PrefabAsset: {fileID: 0}

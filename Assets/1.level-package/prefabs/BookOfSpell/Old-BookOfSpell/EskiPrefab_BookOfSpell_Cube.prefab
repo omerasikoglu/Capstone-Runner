@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8801022350260929938}
   m_Layer: 0
-  m_Name: Prefab_BookOfSpell_Cube
+  m_Name: EskiPrefab_BookOfSpell_Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
