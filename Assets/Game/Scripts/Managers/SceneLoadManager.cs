@@ -31,9 +31,16 @@ public class SceneLoadManager : MonoBehaviour
         //load next
         LoadUnloadScene(GetCurrentLevel(currentLevel + 1));
         PlayerPrefs.SetInt(StringData.PREF_LEVEL, currentLevel + 1);
-
-
     }
+    [Button]
+    public void LoadThisLevelAgain()
+    {
+        int currentLevel = PlayerPrefs.GetInt(StringData.PREF_LEVEL);
+
+        LoadUnloadScene(GetCurrentLevel(currentLevel));
+        LoadUnloadScene(GetCurrentLevel(currentLevel));
+    }
+    [Button]
     public void LoadUnloadScene(Level newLevel)
     {
         if (CheckIsLoaded(newLevel)) UnloadScene(newLevel);

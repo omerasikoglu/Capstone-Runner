@@ -240,10 +240,7 @@ public class PlayerController : MonoBehaviour
                 badOutfitArray[1].gameObject.SetActive(false);
                 break;
             case 0:
-                witchAnimator.gameObject.SetActive(false);
-                premsesAnimator.gameObject.SetActive(false);
-                flatWomanAnimator.gameObject.SetActive(true);
-                UpdateAreYouPrincess();
+                ActivateFlatWoman();
 
                 badOutfitArray[0].gameObject.SetActive(false);
                 goodOutfitArray[0].gameObject.SetActive(false);
@@ -281,7 +278,7 @@ public class PlayerController : MonoBehaviour
             currentPoint = Mathf.Clamp(currentPoint, 0, 8000);
 
             //TODO: Update UI
-            princessItemTakeFX.Play();
+            PlayFX(princessItemTakeFX);
         }
         else if (isPrincessItem == false)
         {
@@ -291,7 +288,7 @@ public class PlayerController : MonoBehaviour
             currentPoint = Mathf.Clamp(currentPoint, 0, 8000);
 
             //TODO: Update UI
-            witchItemTakeFX.Play();
+            PlayFX(witchItemTakeFX);
         }
 
         else if (isPrincessItem == null)
@@ -301,10 +298,17 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt(StringData.PREF_MONEY, currentMoney);
             UIManager.Instance.UpdateMoney();
 
-            moneyTakeFX.Play();
+            PlayFX(moneyTakeFX);
         }
         PlayerPrefs.SetInt(StringData.PREF_POINT, currentPoint);
 
+        void PlayFX(ParticleSystem particle)
+        {
+            princessItemTakeFX.Stop(true, 0);
+            witchItemTakeFX.Stop(true, 0);
+            moneyTakeFX.Stop(true, 0);
+            particle.Play();
+        }
 
     }
 
@@ -323,7 +327,21 @@ public class PlayerController : MonoBehaviour
         }, 1f));
     }
 
-
+    [Button]
+    public void ResetPlayer()
+    {
+        gameObject.transform.position = Vector3.zero;
+        ActivateFlatWoman();
+        StartIdle();
+        GameManager.Instance.ChangeState(GameState.TapToScreen);
+    }
+    private void ActivateFlatWoman()
+    {
+        witchAnimator.gameObject.SetActive(false);
+        premsesAnimator.gameObject.SetActive(false);
+        flatWomanAnimator.gameObject.SetActive(true);
+        UpdateAreYouPrincess();
+    }
     #region Animations
     [Button]
     public void StartIdle()

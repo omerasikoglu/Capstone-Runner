@@ -10,7 +10,7 @@ public class FinishArea : MonoBehaviour
         if (player != null)
         {
             if (PlayerPrefs.GetInt(StringData.PREF_MONEY) >= 1) GameManager.Instance.ChangeState(GameState.Win);
-            else GameManager.Instance.ChangeState(GameState.Fail);
+            else GameManager.Instance.ChangeState(GameState.Punch);
 
 
 

@@ -25,8 +25,25 @@ public class GameManager : MonoBehaviour
     {
         Instance ??= this;
         cameraHandler = GetComponent<CameraHandler>() ?? FindObjectOfType<CameraHandler>();
+
+        
     }
-    private void Start() => ChangeState(GameState.Starting);
+    private void Start()
+    {
+        //Init Data
+        PlayerPrefs.SetInt(StringData.PREF_MONEY, 0);
+        UIManager.Instance.UpdateMoney();
+        UIManager.Instance.UpdateLevel();
+
+        PlayerPrefs.SetInt(StringData.PREF_LEVEL, 0);
+        SceneLoadManager.Instance.LoadNextLevel();
+
+        PlayerPrefs.SetInt(StringData.PREF_POINT, 0);
+
+        Time.timeScale = 1f;
+
+        ChangeState(GameState.Starting);
+    }
 
     public void ChangeState(GameState newState)
     {
@@ -36,7 +53,7 @@ public class GameManager : MonoBehaviour
 
         switch (newState)
         {
-            case GameState.Starting: HandleStarting(); break;
+            case GameState.Starting: HandleLoading(); break;
             case GameState.Running: HandleRunning(); break;
             case GameState.Punch: HandlePunch(); break;
             case GameState.Flying: HandleFlying(); break;
@@ -50,21 +67,8 @@ public class GameManager : MonoBehaviour
         OnStateChanged?.Invoke(newState);
     }
 
-    private void HandleStarting()
+    private void HandleLoading()
     {
-        //Init
-        PlayerPrefs.SetInt(StringData.PREF_MONEY, 0);
-        UIManager.Instance.UpdateMoney();
-        UIManager.Instance.UpdateLevel();
-
-        PlayerPrefs.SetInt(StringData.PREF_LEVEL, 0);
-        SceneLoadManager.Instance.LoadNextLevel();
-
-        PlayerPrefs.SetInt(StringData.PREF_POINT, 0);
-
-        Time.timeScale = 1f;
-
-        //Start
         UIManager.Instance.SwitchUI(GameUI.Loading);
         cameraHandler.SwitchCam(Cam.PreRunCam);
 
@@ -95,6 +99,7 @@ public class GameManager : MonoBehaviour
     //TODO: Adjust Bottom 2
     private void HandlePunch()
     {
+        //summon witch
         cameraHandler.SwitchCam(Cam.PunchCam);
 
     }

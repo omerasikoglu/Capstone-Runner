@@ -15,6 +15,7 @@ public class GateBarUI : MonoBehaviour
     [SerializeField] private Canvas canvas;
 
     private float targetRect;
+    private float barDisappearTime = 6f;
     private int currentProgress = 0; //yapýlan görev
     private int maxProgress = 3; //toplam görev
 
@@ -25,7 +26,7 @@ public class GateBarUI : MonoBehaviour
 
     private void Start()
     {
-        SetTargetProgressAmount(currentProgress);
+        SetTargetProgressRectAmount(currentProgress);
     }
     private void Update()
     {
@@ -52,18 +53,18 @@ public class GateBarUI : MonoBehaviour
         {
             currentProgress -= 1;
         }
-        currentProgress = Mathf.Clamp(currentProgress, 0, 3);
+        currentProgress = Mathf.Clamp(currentProgress, 0, maxProgress);
 
-        SetTargetProgressAmount(currentProgress);
+        SetTargetProgressRectAmount(currentProgress);
         SetWritings(currentProgress);
-        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { HideBar(); }, 4f));
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { HideBar(); }, barDisappearTime));
     }
 
     public void ResetBar()
     {
         currentProgress = 0;
 
-        SetTargetProgressAmount(currentProgress);
+        SetTargetProgressRectAmount(currentProgress);
     }
     private float GetTargetProgressAmount()
     {
@@ -71,16 +72,6 @@ public class GateBarUI : MonoBehaviour
     }
     private void SetWritings(int currentProgress)
     {
-        //string text = currentProgress switch
-        //{
-        //    0 => string.Empty,
-        //    1 => "11111",
-        //    2 => "22222",
-        //    3 => "33333",
-        //    _ => string.Empty
-        //};
-        //textMesh.SetText(text);
-
         textMesh.SetText(
             currentProgress switch
             {
@@ -92,7 +83,7 @@ public class GateBarUI : MonoBehaviour
             });
 
     }
-    private void SetTargetProgressAmount(int currentProgress)
+    private void SetTargetProgressRectAmount(int currentProgress)
     {
         targetRect = currentProgress switch
         {
@@ -105,6 +96,5 @@ public class GateBarUI : MonoBehaviour
 
         if (currentProgress == 0) canvas.gameObject.SetActive(false);
         else canvas.gameObject.SetActive(true);
-        //barTransform.localScale = new Vector3(0.005f, 0.01f, 0.01f);
     }
 }
