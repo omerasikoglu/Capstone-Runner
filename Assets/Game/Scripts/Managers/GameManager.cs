@@ -9,7 +9,7 @@ public enum GameState
     TapToScreen = 6,
     Running = 2,
     Punch = 3,
-    Flying = 4,
+    WatchPunchedGuy = 4,
     Win = 5,
     Fail = 7
 }
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
             case GameState.Starting: HandleLoading(); break;
             case GameState.Running: HandleRunning(); break;
             case GameState.Punch: HandlePunch(); break;
-            case GameState.Flying: HandleFlying(); break;
+            case GameState.WatchPunchedGuy: HandleWatchPunchedGuy(); break;
             case GameState.Win: HandleWin(); break;
             case GameState.None: break;
             case GameState.TapToScreen: HandleTapToScreen(); break;
@@ -103,9 +103,9 @@ public class GameManager : MonoBehaviour
         cameraHandler.SwitchCam(Cam.PunchCam);
 
     }
-    private void HandleFlying()
+    private void HandleWatchPunchedGuy()
     {
-        // böyle bi þey yok
+        cameraHandler.SwitchCam(Cam.FinalScoreCam);
     }
 
     //from button

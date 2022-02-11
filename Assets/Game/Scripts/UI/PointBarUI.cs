@@ -7,7 +7,7 @@ public class PointBarUI : MonoBehaviour
     public static PointBarUI Instance { get; private set; }
 
     [SerializeField] private RectTransform barTransform; //MAX 350
-    [SerializeField] private float lerpSpeed = 2f; //yeþil bar dolma hareket hýzý
+    [SerializeField] private float lerpSpeed = 4f; //yeþil bar dolma hareket hýzý
 
     [SerializeField] private int maxItemCount = 40; //toplam altýn
     private int currentPoint = 0; //alýnan altýn

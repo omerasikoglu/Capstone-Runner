@@ -9,7 +9,7 @@ public class FinishArea : MonoBehaviour
         PlayerController player = other.GetComponentInParent<PlayerController>();
         if (player != null)
         {
-            if (PlayerPrefs.GetInt(StringData.PREF_MONEY) >= 1) GameManager.Instance.ChangeState(GameState.Punch);
+            if (PlayerPrefs.GetInt(StringData.PREF_POINT) > 10) GameManager.Instance.ChangeState(GameState.Punch);
             else GameManager.Instance.ChangeState(GameState.Fail);
 
             Destroy(gameObject);

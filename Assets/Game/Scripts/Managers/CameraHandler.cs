@@ -11,18 +11,19 @@ public enum Cam
     RunningCam = 1,
     PunchCam = 2,
     FinalPoseCam = 3,
-    PreRunCam = 4
+    PreRunCam = 4,
+    FinalScoreCam = 5,
 }
 
 public class CameraHandler : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera vCam1, vCam2, vCam3, vCam4;
+    [SerializeField] private CinemachineVirtualCamera vCam1, vCam2, vCam3, vCam4, vCam5;
 
     private Cam oldCam;
     private CinemachineVirtualCamera currentCam;
     private List<CinemachineVirtualCamera> camList;
 
-    private void Awake() => camList = new List<CinemachineVirtualCamera>(4) { vCam1, vCam2, vCam3, vCam4 };
+    private void Awake() => camList = new List<CinemachineVirtualCamera>(5) { vCam1, vCam2, vCam3, vCam4, vCam5 };
 
     public void SwitchCam(Cam newCam)
     {
@@ -36,6 +37,7 @@ public class CameraHandler : MonoBehaviour
             (Cam)2 => vCam2,
             (Cam)3 => vCam3,
             (Cam)4 => vCam4,
+            (Cam)5 => vCam5,
             _ => vCam1
         };
 

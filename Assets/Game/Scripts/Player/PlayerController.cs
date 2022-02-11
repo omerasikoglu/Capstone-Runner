@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using System;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -75,7 +76,8 @@ public class PlayerController : MonoBehaviour
             case GameState.Running:
                 StartRun();
                 break;
-            case GameState.Flying:
+            case GameState.WatchPunchedGuy:
+                StartPunchedGuyFlying();
                 break;
             case GameState.Win:
                 StartWin();
@@ -408,16 +410,29 @@ public class PlayerController : MonoBehaviour
     [Button]
     public void StartPunch()
     {
-        StartIdle();
+        SetCharacterSpeed(0);
+        foreach (Animator animator in animatorList)
+        {
+            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.PUNCH);
+        }
+
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
         {
-            foreach (Animator animator in animatorList)
-            {
-                if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.PUNCH);
-            };
-        }, 2f));
+            GameManager.Instance.ChangeState(GameState.WatchPunchedGuy);
+        }, 1f));
 
         guy.gameObject.SetActive(true);
+    }
+    private void StartPunchedGuyFlying()
+    {
+        float kickDistance = Mathf.InverseLerp(0f, 20f, PlayerPrefs.GetInt(StringData.PREF_POINT)) * 18f; //20 birim
+        guy.transform.DOLocalMoveZ(guy.transform.position.z + kickDistance, 4f).SetEase(Ease.OutCirc);
+        PointBarUI.Instance.ResetBar();
+
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
+        {
+            GameManager.Instance.ChangeState(GameState.Win);
+        }, 5f));
     }
     [Button]
     public void StartFail()
