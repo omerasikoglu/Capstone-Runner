@@ -24749,8 +24749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9d764bc3e6e774cbd2d2dac2cbcd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  butterfly: {fileID: 8421710515391749168, guid: ed14a25bb7aeb5e4bbe3b9c1a02e6908, type: 3}
-  bat: {fileID: 6894310374659380213, guid: c7d4a75d6b472f24f954fd47b0984872, type: 3}
+  butterfly: {fileID: 4976182927104677478, guid: 1f62b335def26aa45a3a681331c8ab68, type: 3}
+  bat: {fileID: 2218963737084114104, guid: 5bb6a3e43772a6547937628cdf4d5750, type: 3}
   maxY: 1
   selfRotateDegree: 25
 --- !u!1 &6979896074818396088
