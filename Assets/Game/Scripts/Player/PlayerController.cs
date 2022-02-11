@@ -6,6 +6,7 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField, BoxGroup("[Punched Guy]")] private GameObject guy;
     [SerializeField, BoxGroup("[Animator]")] private Animator witchAnimator, premsesAnimator, flatWomanAnimator;
     [SerializeField, BoxGroup("[Settings]")] private PlayerControllerSettings playerSettings;
     [SerializeField, BoxGroup("[Settings]")] private FamiliarController familiarController;
@@ -277,7 +278,9 @@ public class PlayerController : MonoBehaviour
             currentPoint += areYouPrincess == true ? 1 : -1;
             currentPoint = Mathf.Clamp(currentPoint, 0, 8000);
 
-            //TODO: Update UI
+            PlayerPrefs.SetInt(StringData.PREF_POINT, currentPoint);
+            PointBarUI.Instance.SetTargetItemRectAmount();
+
             PlayFX(princessItemTakeFX);
         }
         else if (isPrincessItem == false)
@@ -287,7 +290,9 @@ public class PlayerController : MonoBehaviour
             currentPoint += areYouPrincess == false ? 1 : -1;
             currentPoint = Mathf.Clamp(currentPoint, 0, 8000);
 
-            //TODO: Update UI
+            PlayerPrefs.SetInt(StringData.PREF_POINT, currentPoint);
+            PointBarUI.Instance.SetTargetItemRectAmount();
+
             PlayFX(witchItemTakeFX);
         }
 
@@ -295,12 +300,12 @@ public class PlayerController : MonoBehaviour
         {
             //altın aldıysa
             currentMoney += 10;
+
             PlayerPrefs.SetInt(StringData.PREF_MONEY, currentMoney);
             UIManager.Instance.UpdateMoney();
 
             PlayFX(moneyTakeFX);
         }
-        PlayerPrefs.SetInt(StringData.PREF_POINT, currentPoint);
 
         void PlayFX(ParticleSystem particle)
         {
@@ -331,9 +336,22 @@ public class PlayerController : MonoBehaviour
     public void ResetPlayer()
     {
         gameObject.transform.position = Vector3.zero;
+
         ActivateFlatWoman();
         StartIdle();
+
+        //Reset data
+        currentOutfitPoint = 0; currentOutfitPoint = 0; currentPoint = 0;
+        PlayerPrefs.SetInt(StringData.PREF_MONEY, currentMoney);
+        PlayerPrefs.SetInt(StringData.PREF_POINT, currentPoint);
+
         GameManager.Instance.ChangeState(GameState.TapToScreen);
+
+        UIManager.Instance.UpdateMoney();
+        PointBarUI.Instance.ResetBar();
+
+        familiarController.ResetFamiliars();
+        gateBarUI.ResetBar();
     }
     private void ActivateFlatWoman()
     {
@@ -390,10 +408,16 @@ public class PlayerController : MonoBehaviour
     [Button]
     public void StartPunch()
     {
-        foreach (Animator animator in animatorList)
+        StartIdle();
+        StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
         {
-            if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.PUNCH);
-        }
+            foreach (Animator animator in animatorList)
+            {
+                if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.PUNCH);
+            };
+        }, 2f));
+
+        guy.gameObject.SetActive(true);
     }
     [Button]
     public void StartFail()

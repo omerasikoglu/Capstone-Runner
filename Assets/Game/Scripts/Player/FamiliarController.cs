@@ -39,6 +39,15 @@ public class FamiliarController : MonoBehaviour
             .SetLoops(-1, LoopType.Restart)
             ;
     }
+    [Button]
+    public void ResetFamiliars()
+    {
+        for (int i = 0; i < familiarList.Count; i++)
+        {
+            Destroy(familiarDic[i+1]);
+        }
+        familiarDic.Clear(); familiarList.Clear();
+    }
 
     [Button]
     public void AddNewButterfly()
@@ -47,7 +56,8 @@ public class FamiliarController : MonoBehaviour
         familiarList.Add(clone);
         familiarDic.Add(familiarList.Count, clone.gameObject);
         UpdateFamiliarPositions();
-    } [Button]
+    }
+    [Button]
     public void AddNewBat()
     {
         Transform clone = Instantiate(bat, transform.localPosition, Quaternion.identity, transform);

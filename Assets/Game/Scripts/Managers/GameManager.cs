@@ -33,10 +33,10 @@ public class GameManager : MonoBehaviour
         //Init Data
         PlayerPrefs.SetInt(StringData.PREF_MONEY, 0);
         UIManager.Instance.UpdateMoney();
-        UIManager.Instance.UpdateLevel();
 
         PlayerPrefs.SetInt(StringData.PREF_LEVEL, 0);
         SceneLoadManager.Instance.LoadNextLevel();
+        UIManager.Instance.UpdateLevel();
 
         PlayerPrefs.SetInt(StringData.PREF_POINT, 0);
 

@@ -24978,6 +24978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942c00862789f894b9832274ed2e54f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guy: {fileID: 0}
   witchAnimator: {fileID: 3582340646073724526}
   premsesAnimator: {fileID: 1836217518739059323}
   flatWomanAnimator: {fileID: 3582340644489294559}
@@ -29897,7 +29898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 608da94090860034287101f498824cef, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 608da94090860034287101f498824cef, type: 3}
       propertyPath: m_TagString
@@ -58861,7 +58862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8ab869e60195aec4f8a4526b2be20a55, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1082271958561512970, guid: 8ab869e60195aec4f8a4526b2be20a55, type: 3}
       propertyPath: m_IsActive
