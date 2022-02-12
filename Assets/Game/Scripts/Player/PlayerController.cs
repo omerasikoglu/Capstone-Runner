@@ -438,8 +438,10 @@ public class PlayerController : MonoBehaviour
     private void StartPunchedGuyFlying()
     {
         float kickDistance = Mathf.InverseLerp(0f, 20f, PlayerPrefs.GetInt(StringData.PREF_POINT)) * 18f; //20 birim
-        guy.transform.DOLocalMoveZ(guy.transform.position.z + kickDistance, 4f).SetEase(Ease.OutCirc);
+        guy.transform.DOLocalMoveZ(guy.transform.localPosition.z + kickDistance, 4f).SetEase(Ease.OutCirc);
         PointBarUI.Instance.ResetBar();
+
+        guy.transform.DOLocalRotate(new Vector3(90f, guy.transform.localRotation.y, guy.transform.localRotation.z), 2f);
 
         StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() =>
         {
