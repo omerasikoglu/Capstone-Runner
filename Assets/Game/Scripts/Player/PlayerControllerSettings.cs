@@ -7,16 +7,19 @@ public class PlayerControllerSettings : ScriptableObject
 {
 
     public float movementSpeed;
-   
+
+    [SerializeField] private float maxMovementSpeed = 10f;
+    public float MaxMovementSpeed => maxMovementSpeed;
+
     [SerializeField] private float jumpHeightY;
     public float JumpHeightY => jumpHeightY;
-    
+
     [SerializeField] private float maxSpeed = 3f;
     public float MaxSpeed => maxSpeed;
-   
+
     [SerializeField] private float slideMovementSensitivity = 1f;
     public float SlideMovementSensitivity => slideMovementSensitivity;
-   
+
     [SerializeField] private float rotationSpeed = 1f;
     public float RotationSpeed => rotationSpeed;
 

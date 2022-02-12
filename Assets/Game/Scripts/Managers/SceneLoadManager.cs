@@ -20,13 +20,17 @@ public class SceneLoadManager : MonoBehaviour
     [Button]
     public void LoadNextLevel()
     {
-        if (!autoLoad) return;
-
-        //unload this
         int currentLevel = PlayerPrefs.GetInt(StringData.PREF_LEVEL);
-        if (currentLevel == 0) { }
-        else LoadUnloadScene(GetCurrentLevel(currentLevel));
 
+        if (autoLoad)
+        {
+            //unload this
+            if (currentLevel == 0) { }
+            else
+            {
+                LoadUnloadScene(GetCurrentLevel(currentLevel));
+            }
+        }
 
         //load next
         LoadUnloadScene(GetCurrentLevel(currentLevel + 1));

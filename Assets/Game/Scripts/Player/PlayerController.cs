@@ -21,12 +21,16 @@ public class PlayerController : MonoBehaviour
     private bool? areYouPrincess = null;
 
     private int currentMoney = 0, currentOutfitPoint = 0, currentPoint = 0;
+    private Vector3 GuyTransformFirst;
 
     private void Awake()
     {
         //Init
         animatorList = new List<Animator>() { witchAnimator, premsesAnimator, flatWomanAnimator };
 
+        GuyTransformFirst = guy.transform.position;
+        //Reset attığımızda eski konumuna gelsin diye
+        Debug.Log("guyTransformFirst = " + GuyTransformFirst);
         UpdateAreYouPrincess();
     }
     private void Start()
@@ -71,7 +75,7 @@ public class PlayerController : MonoBehaviour
             case GameState.Starting:
                 StartIdle();
                 break;
-            case GameState.TapToScreen:
+            case GameState.TapToScreen: StartIdle();
                 break;
             case GameState.Running:
                 StartRun();
@@ -337,7 +341,9 @@ public class PlayerController : MonoBehaviour
     [Button]
     public void ResetPlayer()
     {
-        gameObject.transform.position = Vector3.zero;
+        gameObject.transform.position = new Vector3(0f, 0f, -10f);
+        guy.transform.position = GuyTransformFirst;
+        Debug.Log(" guy.transform.position = " + guy.transform.position);
 
         ActivateFlatWoman();
         StartIdle();
@@ -350,6 +356,7 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.ChangeState(GameState.TapToScreen);
 
         UIManager.Instance.UpdateMoney();
+        UIManager.Instance.UpdateLevel();
         PointBarUI.Instance.ResetBar();
 
         familiarController.ResetFamiliars();
@@ -379,7 +386,7 @@ public class PlayerController : MonoBehaviour
         {
             if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.RUNNING);
         }
-        SetCharacterSpeed(5f);
+        SetCharacterSpeed(playerSettings.MaxMovementSpeed);
     }
     [Button]
     public void StartSpin()
@@ -410,7 +417,7 @@ public class PlayerController : MonoBehaviour
     [Button]
     public void StartPunch()
     {
-        SetCharacterSpeed(0);
+        SetCharacterSpeed(0f);
         foreach (Animator animator in animatorList)
         {
             if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.PUNCH);
