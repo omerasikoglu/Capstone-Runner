@@ -25152,8 +25152,8 @@ MonoBehaviour:
   - {fileID: 6979896075891495157}
   - {fileID: 6979896075695607617}
   gateBarUI: {fileID: 3599792698253473747}
-  trueGateIsPassedFX: {fileID: 0}
-  wrongGateIsPassedFX: {fileID: 0}
+  trueGateIsPassedFX: {fileID: 6577020286202722970}
+  wrongGateIsPassedFX: {fileID: 1372078044843913900}
   princessItemTakeFX: {fileID: 6577020286202722970}
   witchItemTakeFX: {fileID: 1372078044843913900}
   moneyTakeFX: {fileID: 6979896074713064223}
