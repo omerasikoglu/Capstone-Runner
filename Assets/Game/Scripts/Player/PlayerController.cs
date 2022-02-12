@@ -75,7 +75,8 @@ public class PlayerController : MonoBehaviour
             case GameState.Starting:
                 StartIdle();
                 break;
-            case GameState.TapToScreen: StartIdle();
+            case GameState.TapToScreen:
+                StartIdle();
                 break;
             case GameState.Running:
                 StartRun();
@@ -310,14 +311,14 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt(StringData.PREF_MONEY, currentMoney);
             UIManager.Instance.UpdateMoney();
 
-            PlayFX(moneyTakeFX);
+            PlayFX(moneyTakeFX, 1);
         }
 
-        void PlayFX(ParticleSystem particle)
+        void PlayFX(ParticleSystem particle, int isOldEmitPending = 0)
         {
-            princessItemTakeFX.Stop(true, 0);
-            witchItemTakeFX.Stop(true, 0);
-            moneyTakeFX.Stop(true, 0);
+            princessItemTakeFX.Stop(true, (ParticleSystemStopBehavior)isOldEmitPending);
+            witchItemTakeFX.Stop(true, (ParticleSystemStopBehavior)isOldEmitPending);
+            moneyTakeFX.Stop(true, (ParticleSystemStopBehavior)isOldEmitPending);
             particle.Play();
         }
 
@@ -335,7 +336,7 @@ public class PlayerController : MonoBehaviour
             {
                 collider.enabled = true;
             }
-        }, 1f));
+        }, 0.5f));
     }
 
     [Button]
