@@ -319,7 +319,7 @@ public class PlayerController : MonoBehaviour
             princessItemTakeFX.Stop(true, (ParticleSystemStopBehavior)isOldEmitPending);
             witchItemTakeFX.Stop(true, (ParticleSystemStopBehavior)isOldEmitPending);
             moneyTakeFX.Stop(true, (ParticleSystemStopBehavior)isOldEmitPending);
-            particle.Play();
+            if (particle != null) particle.Play();
         }
 
     }
@@ -369,6 +369,10 @@ public class PlayerController : MonoBehaviour
         premsesAnimator.gameObject.SetActive(false);
         flatWomanAnimator.gameObject.SetActive(true);
         UpdateAreYouPrincess();
+    }
+    public bool? GetAreYouPrincess()
+    {
+        return areYouPrincess;
     }
     #region Animations
     [Button]
