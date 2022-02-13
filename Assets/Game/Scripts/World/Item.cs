@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
-        IdleAnimation();
+        //IdleAnimation();
     }
 
     private void IdleAnimation()
