@@ -383,6 +383,7 @@ public class PlayerController : MonoBehaviour
             if (animator.gameObject.activeInHierarchy) animator.SetTrigger(StringData.IDLE);
         }
         SetCharacterSpeed(0f);
+        guy.transform.DOLocalRotate(new Vector3(0f, guy.transform.localRotation.y, guy.transform.localRotation.z), 0f);
     }
     [Button]
     public void StartRun()

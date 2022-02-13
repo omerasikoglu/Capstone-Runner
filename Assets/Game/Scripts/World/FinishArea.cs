@@ -8,9 +8,17 @@ public class FinishArea : MonoBehaviour
 
     private void Start()
     {
+        ResetToDefault();
+    }
+
+    private void ResetToDefault()
+    {
         witchDummy.gameObject.SetActive(false);
         princessDummy.gameObject.SetActive(false);
+        witchDummy.transform.localPosition = new Vector3(0f,0f,0.1f);
+        princessDummy.transform.localPosition = new Vector3(0f, 0f, 0.1f);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         PlayerController player = other.GetComponentInParent<PlayerController>();
@@ -25,7 +33,7 @@ public class FinishArea : MonoBehaviour
             else GameManager.Instance.ChangeState(GameState.Fail);
 
             //set disable
-            StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { witchDummy.gameObject.SetActive(false); princessDummy.gameObject.SetActive(false); }, 10f));
+            StartCoroutine(UtilsClass.WaitCertainAmountOfTime(() => { ResetToDefault(); }, 10f));
         }
     }
 }
