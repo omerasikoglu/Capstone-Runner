@@ -76,9 +76,9 @@ public class GateBarUI : MonoBehaviour
             currentProgress switch
             {
                 0 => string.Empty,
-                1 => "11111",
-                2 => "22222",
-                3 => "33333",
+                1 => "ROYAL",
+                2 => "EPIC",
+                3 => "LEGENDARY",
                 _ => string.Empty
             });
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.SceneManagement;
 using System;
+using DG.Tweening;
 
 [Serializable]
 public enum Level

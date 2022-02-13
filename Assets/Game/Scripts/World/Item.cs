@@ -24,7 +24,6 @@ public class Item : MonoBehaviour
 
     private void IdleAnimation()
     {
-       
             float itemCycleDuration = UnityEngine.Random.Range(1.5f, 2.5f);
             transform.DOLocalMoveY(0.2f, itemCycleDuration)
                     .SetEase(Ease.InOutSine)
